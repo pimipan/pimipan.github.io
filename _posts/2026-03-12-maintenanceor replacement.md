@@ -45,7 +45,7 @@ author: Pimi
 * **物理检查**：重点观察换热器表面的腐蚀情况、密封件完好性及过热迹象。
 ### 方法二
 除了使用监测工具也可以通过经验法，以下是我整理的部分项目
-
+![](https://github.com/pimipan/pimipan.github.io/blob/master/assets/img/2026-03-12%20维保周期表.png?raw=true)
 
 
 
