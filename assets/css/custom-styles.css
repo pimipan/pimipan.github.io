@@ -1,34 +1,37 @@
-/* 1. 基础正文设置：应用于所有段落和列表 */
-article p, .main-content p, 
-article li, .main-content li {
-    line-height: 1.75 !important;  /* 黄金比例，极佳的阅读舒适度 */
-    margin-bottom: 1.5rem;         /* 增加段落间的间距 */
-    color: #333;                   /* 稍微加深文字颜色提高对比度 */
+/* ==================== 标题间距优化（针对文章正文） ==================== */
+/* 重点：使用 .post-content 提高优先级，解决标题离上方正文太近的问题 */
+
+.post-content h1,
+article h1,
+.main-content h1,
+.post-title {
+    line-height: 1.25 !important;
+    margin-top: 3.2rem !important;     /* ← 增大这个值：让标题远离上方的正文 */
+    margin-bottom: 1.2rem !important;  /* ← 减小或保持：让标题下方的正文更靠近标题 */
+    font-size: 2.2rem;                 /* 可选：如果你觉得一级标题字号太大/小，可以调整 */
 }
 
-/* 2. 标题层级设置：字号越大，行距越紧 */
-h1, .post-title {
-    line-height: 1.2 !important;
-    margin-top: 2rem !important;
-    margin-bottom: 1rem !important;
+.post-content h2,
+article h2,
+.main-content h2 {
+    line-height: 1.35 !important;
+    margin-top: 2.8rem !important;     /* 二级标题上方间距 */
+    margin-bottom: 1.0rem !important;
 }
 
-h2, h3 {
+.post-content h3,
+article h3,
+.main-content h3 {
     line-height: 1.4 !important;
-    margin-top: 1.8rem !important;
-    margin-bottom: 0.8rem !important;
+    margin-top: 2.2rem !important;
+    margin-bottom: 0.9rem !important;
 }
 
-/* 3. 引用块设置：稍微收紧，增加区分度 */
-blockquote {
-    line-height: 1.6 !important;
-    font-style: italic;
-    border-left: 5px solid #eee;
-    padding-left: 1rem;
-}
-
-/* 4. 代码块设置：保持严谨 */
-code, pre {
-    line-height: 1.5 !important;
-    font-family: "Cascadia Code", Monaco, Consolas, monospace;
+/* 可选：让正文段落与标题的衔接更自然（避免段落 margin-bottom 过大挤压标题下方） */
+.post-content p,
+article p,
+.main-content p {
+    margin-top: 0 !important;          /* 段落上方一般不要额外 margin */
+    margin-bottom: 1.6rem !important;  /* 你原来是 1.5rem，可以微调 */
+    line-height: 1.75 !important;
 }
