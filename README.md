@@ -234,3 +234,127 @@ This template was not made *entirely* from scratch. I'd like to give special tha
 
 I'd also like to thank [Dr. Jekyll's Themes](https://drjekyllthemes.github.io/), [Jekyll Themes](http://jekyllthemes.org/), and another [Jekyll Themes](http://jekyllrc.github.io/jekyllthemes/) for featuring Beautiful Jekyll in their Jekyll theme directories.
 
+# 添加你自己的内容
+
+要向你的网站添加页面，你可以编写 markdown 文件 (`.md`) 或者编写 HTML 文件。编写 markdown 比 HTML 要容易得多，因此这是推荐的方法（如果你需要在 5 分钟内学习 markdown，[这里有一个很棒的教程](https://markdowntutorial.com/)）。
+
+要查看 markdown 文件的示例，请点击任何以 `.md` 结尾的文件，例如 [`aboutme.md`](./aboutme.md)。在该页面上，你可以看到一些格式精美的文本（有一个加粗的单词、一个链接、一些列表符号），如果你点击铅笔图标来编辑文件，你会看到生成这些漂亮文本的 markdown 代码。非常简单！
+
+相比之下，看看 [`tags.html`](./tags.html)。这就是编写 HTML 的方式 —— 没那么美观。所以如果你不懂 HTML，请坚持使用 markdown。
+
+你创建的任何 markdown 或 HTML 文件都可以在你的网站上通过 `https://<yourusername>.github.io/<pagename>` 访问。例如，如果你创建了一个 `about.md` 文件（或 `about.html`），那么它将存在于 `https://<yourusername>.github.io/about`。
+
+你在 [`_posts`](./_posts) 目录下创建的文件将被视为 blog entries。你可以参考那里现有的文件来了解如何编写 blog posts。注意 blog post 文件的格式 —— 它们必须遵循 `YEAR-MONTH-DAY-title.md` 的命名规范。在你成功添加自己的 post 后，你可以删除 [`_posts`](./_posts) 内部现有的文件来移除示例 post，因为那些只是为了帮助你学习的演示 post。
+
+# 为每个页面自定义参数
+
+**最后一件重要的事情**：为了让你新页面使用这个模板，而不仅仅是普通的 HTML 页面，**你必须在每个页面的顶部添加 [YAML front matter](https://jekyllrb.com/docs/front-matter/)**：
+如果你不想在页面上使用任何参数，你仍然需要使用这两条虚线。如果不这样做，你的文件将按原样显示，而不带有 Beautiful Jekyll 模板。
+
+你可以参考 [`aboutme.md`](https://raw.githubusercontent.com/daattali/beautiful-jekyll/master/aboutme.md) 的顶部作为示例。
+
+**重要结论：务必在每个（EVERY）页面添加 YAML front matter，即两行由三个短横线组成的线。如果你有任何参数，请将它们放在这两行之间。**
+
+# 支持的参数 (Supported parameters)
+
+下面是 Beautiful Jekyll 支持的参数列表（其中任何一个都可以添加到任何页面的 YAML front matter 中）。记得也要查看 `_config.yml` 文件以了解其他站点范围的设置。
+
+## 主要参数 (Main parameters)
+
+这些是你最可能在大多数页面上使用的基础 YAML 参数。
+
+参数 | 描述
+----------- | -----------
+title | 页面或 blog post 的标题
+subtitle | 页面或 blog post 的简短描述，显示在标题下方
+tags | 用于对 post 进行分类的标签列表。用逗号分隔标签并将其放在方括号内。示例：`[personal, analysis, finance]`
+cover-img | 在页面顶部包含一张大尺寸的全宽图片。你可以提供单张图片的路径（例如 `"/path/to/img"`），或者一组循环播放的图片列表（例如 `["/path/img1", "/path/img2"]`）。如果你想为图片添加说明文字（caption），则必须使用列表表示法（即使只有一张图片也要使用 `[]`），每张图片应提供为 `"/path/to/img" : "Caption of image"`。
+thumbnail-img | 对于 blog posts，如果你想添加一个显示在 feed 中的缩略图，请使用 `thumbnail-img: /path/to/image`。如果没有提供缩略图，则 `cover-img` 将被用作缩略图。你可以使用 `thumbnail-img: ""` 来禁用缩略图。
+comments | 如果你想向特定页面添加评论，请使用 `comments: true`。评论仅在你于 `_config.yml` 文件中启用了评论提供商（Facebook, disqus, staticman, utterances, giscus, CommentBox）之一时才有效。评论在 blog posts 上会自动启用，但在其他页面上不会；要关闭特定 post 的评论，请使用 `comments: false`。
+
+## 用于 SEO 和社交媒体分享的参数
+
+这些参数允许你控制当页面显示在搜索引擎（如 Google）或分享到社交媒体（如 Twitter/Facebook）时显示的信息。
+
+参数 | 描述
+----------- | -----------
+share-title | 页面的标题。如果未提供，将使用 `title`；如果 `title` 也缺失，则使用站点标题（来自 `_config.yml`）。
+share-description | 页面的简要描述。如果未提供，将使用 `subtitle`；如果 `subtitle` 也缺失，则使用页面内容的摘要。
+share-img | 要显示的图片。如果未提供，则在提供了 `cover-img` 或 `thumbnail-img` 的情况下将使用其中之一。
+
+## 较少使用的参数
+
+这些参数你可能不会经常使用，但有时会派上用场。
+
+参数 | 描述
+----------- | -----------
+author | 指定 blog post 的作者（如果网站有多个作者，这很有用）。
+readtime | 如果你想让 post 显示阅读需要多少分钟，请使用 `readtime: true`。
+show-avatar | 如果你在 `_config.yml` 中配置了头像，但想在特定页面上将其关闭，请使用 `show-avatar: false`。
+social-share | 默认情况下，每个 blog post 都有在社交媒体上分享该页面的按钮。如果你想关闭此功能，请使用 `social-share: false`。
+nav-short | 默认情况下，导航栏在向下滚动页面后会变短。如果你希望导航栏在某个页面上始终保持较短状态，请使用 `nav-short: true`
+gh-repo | 如果你想在 post 顶部显示 GitHub 按钮，这会设置 GitHub 仓库名称（例如 `daattali/beautiful-jekyll`）。你还必须使用 `gh-badge` 参数来指定显示哪些按钮。
+gh-badge | 选择要显示的 GitHub 按钮。可用选项包括：[star, watch, fork, follow]。你还必须使用 `gh-repo` 参数来指定 GitHub 仓库。
+last-updated | 如果你想显示某个 blog post 在最初发布后进行了更新，可以指定一个 "Updated on" 日期。
+layout | 页面的类型（blog posts 默认为 `post`，其他页面默认为 `page`）。有关更多信息，请参见下文的 *Page types* 部分。
+
+## 高级参数
+
+这些是高级参数，仅对需要对网站进行精细控制的用户有用。
+
+参数 | 描述
+----------- | -----------
+footer-extra | 如果你想在页脚的社交媒体图标下方包含额外内容，请在 `_includes/` 文件夹中创建一个 HTML 文件（例如 `_includes/myinfo.html`），并将 `footer-extra` 设置为该文件名（例如 `footer-extra: myinfo.html`）。接受单个文件或文件列表。
+before-content | 与 `footer-extra` 类似，但用于在页面的主要内容之前（标题下方）包含 HTML。
+after-content | 与 `footer-extra` 类似，但用于在页面的主要内容之后（页脚上方）包含 HTML。
+head-extra | 与 `footer-extra` 类似，但用于你需要包含在页面 `<head>` 标签中的任何 HTML 代码。
+language | 设置在页面的 &lt;html&gt; 元素上的 HTML 语言代码。
+full-width | 默认情况下，页面内容被限制在标准宽度内。使用 `full-width: true` 允许内容跨越窗口的整个宽度。
+js | 要包含在页面中的本地 JavaScript 文件列表（例如 `/assets/js/mypage.js`）
+ext-js | 要包含在页面中的外部 JavaScript 文件列表（例如 `//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js`）。支持 [Subresource Integrity (SRI)](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) 的外部 JavaScript 文件可以使用 `href` 和 `sri` 参数指定，例如：<br/>`href: "//code.jquery.com/jquery-3.1.1.min.js"`<br/>`sri: "sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="`
+css | 要包含在页面中的本地 CSS 文件列表
+ext-css | 要包含在页面中的外部 CSS 文件列表。也支持使用 SRI 的外部 CSS 文件（参见 `ext-js` 参数）。
+
+## 页面类型 (Page types)
+
+- **post** - 要编写 blog post，请在 `_posts` 文件夹中添加 markdown 或 HTML 文件。只要你为其提供 YAML front matter（那两行三个短横线），它就会自动渲染为 blog post。查看现有的 blog post 文件，了解如何在 blog posts 中使用 YAML 参数的示例。
+- **page** - 在 `_posts` 文件夹之外、使用了 YAML front matter 的任何页面都将具有与 blog posts 非常相似的样式。
+- **home** - home 布局旨在作为你 blog posts 的主页 —— 它将显示你所有的 blog posts，按从新到旧排序。使用 `home` 布局的文件必须命名为 `index.html`（不能是 `index.md` 或其他任何名称！）。
+- **minimal** - 如果你想创建一个具有极简样式的页面（即没有笨重的导航栏和页脚），请在 YAML front matter 中分配 `layout: minimal`。
+- 如果你想完全绕过模板引擎，只编写自己的 HTML 页面，只需省略 YAML front matter 即可。只有在你懂得如何编写 HTML 的情况下才这样做！
+
+# 精选用户（成功案例！）
+
+访问 [官方网站](http://beautifuljekyll.com/examples) 查看使用 Beautiful Jekyll 的示例网站。
+
+如果你想展示自己并加入此列表，[升级到 Individual 计划](https://github.com/sponsors/daattali/sponsorships?&tier_id=7362) 将为你提供曝光度以及其他一些奖励！
+
+# 后续步骤
+
+祝贺你走到这一步！你现在拥有了免费轻松构建精美网站的所有工具。
+
+- 在你熟悉了 markdown 写作的基础知识后，我建议你看看这篇 [示例 post](https://beautifuljekyll.com/2020-02-28-sample-markdown/) 以及 [创建它的代码](https://raw.githubusercontent.com/daattali/beautiful-jekyll/master/_posts/2020-02-28-sample-markdown.md) 来学习一些关于 markdown 的更高级技巧。
+
+- 我强烈建议浏览 [*常见问题 (FAQ)*](https://beautifuljekyll.com/faq/) 来寻找你可能还不知道的疑问的答案。我建议每隔几个月查看一次 [*更新内容 (What's New?)*](https://beautifuljekyll.com/updates/) 页面，看看是否有新功能，并在需要时学习 [如何将你的网站更新到最新版本](https://beautifuljekyll.com/faq/#updating)。
+
+- 你还可以查看 [高级安装方法](https://beautifuljekyll.com/getstarted/#install-steps-hard)，这些方法提供了更多控制权，但使用起来更难。请记住，Beautiful Jekyll 主要被设计为 GitHub 主题使用，因此如果你选择 Ruby 安装方法之一，你将无法获得任何支持。
+
+# 获取帮助
+
+访问 [FAQ 页面](https://beautifuljekyll.com/faq) 获取常见问题的答案。
+
+**如果你选择 [成为赞助者](https://beautifuljekyll.com/plans/)，你将可以参加我的 [办公时间 (office hours)](https://beautifuljekyll.com/officehours/)，在那里你可以寻求帮助。** 你也可以使用 [Discussions](https://github.com/daattali/beautiful-jekyll/discussions) 区域尝试从社区获得帮助。
+
+Beautiful Jekyll 被 50,000+ 人使用，他们的网络技能参差不齐，因此无法回答所有可能出现的问题。对于任何与 Beautiful Jekyll 不特别相关、而更多是关于 Jekyll 或一般 Web 开发的问题，通常可以在 Google、[Jekyll 文档](https://jekyllrb.com/) 或 [Jekyll 支持论坛](https://talk.jekyllrb.com/) 中找到答案。
+
+# 贡献 (Contributions)
+
+感谢 [所有过去的贡献者](https://github.com/daattali/beautiful-jekyll/graphs/contributors)。如果你发现任何问题或想以任何方式做出贡献，请随时创建 pull request/打开 issue/给我发消息。
+
+你也可以通过成为 [官方赞助者](https://github.com/sponsors/daattali/sponsorships?tier_id=39856) 来做出贡献，帮助保持 Beautiful Jekyll 的良好维护！
+
+# 致谢 (Credits)
+
+这个模板并非 *完全* 从零开始制作。我要特别感谢 [Jekyll Now](https://github.com/barryclark/jekyll-now) 和 [Bootstrap Clean Blog](https://github.com/IronSummitMedia/startbootstrap-clean-blog)，我最初从中借鉴了几个想法。
+
+我还要感谢 [Dr. Jekyll's Themes](https://drjekyllthemes.github.io/)、[Jekyll Themes](http://jekyllthemes.org/) 以及另一个 [Jekyll Themes](http://jekyllrc.github.io/jekyllthemes/) 将 Beautiful Jekyll 收录在他们的 Jekyll 主题目录中。
