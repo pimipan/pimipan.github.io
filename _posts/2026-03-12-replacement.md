@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 维修还是更换：老旧冷水机组评估指南
-comments: true
-author: Pimi
+title: 维修还是更换
+subtitle: 老旧冷水机组评估指南
+author: Pimi Pan
 ---
 
 # 维修还是更换：老旧冷水机组评估指南
