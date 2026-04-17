@@ -6,7 +6,7 @@ article h1,
 .main-content h1,
 .post-title {
     line-height: 1.25 !important;
-    margin-top: 3.2rem !important;     /* ← 增大这个值：让标题远离上方的正文 */
+    margin-top: 4rem !important;     /* ← 增大这个值：让标题远离上方的正文 */
     margin-bottom: 1.2rem !important;  /* ← 减小或保持：让标题下方的正文更靠近标题 */
     font-size: 2.2rem;                 /* 可选：如果你觉得一级标题字号太大/小，可以调整 */
 }
