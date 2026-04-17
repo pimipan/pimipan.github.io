@@ -1,12 +1,8 @@
 ---
 layout: post
-title: Flake it till you make it
-subtitle: Excerpt from Soulshaping by Jeff Brown
-cover-img: /assets/img/path.jpg
-thumbnail-img: /assets/img/thumb.png
-share-img: /assets/img/path.jpg
-tags: [books, test]
-author: Sharon Smith and Barry Simpson
+title: 维修还是更换
+subtitle: 老旧冷水机组评估指南
+author: Pimi Pan
 ---
 
 # 维修还是更换：老旧冷水机组评估指南
