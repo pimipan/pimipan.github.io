@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "New Post"
+title: 振动的分析和解决措施
 date: 2026-05-01
 ---
 
