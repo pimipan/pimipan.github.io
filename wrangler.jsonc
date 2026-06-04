@@ -6,7 +6,7 @@
     "enabled": true
   },
   "build": {
-    "command": "bundle exec jekyll build"
+    "command": "BUNDLE_WITHOUT=development:test bundle exec jekyll build"
   },
   "assets": {
     "directory": "_site"
