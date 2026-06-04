@@ -222,9 +222,8 @@ date: 2026-05-01
 - 使用1/3倍频程分析
 - 频段：1–100 Hz
 
-![vcline](https://github.com/pimipan/pimipan.github.io/blob/master/assets/img/20260424-vc-line.png
-)
-![vcchart](https://github.com/pimipan/pimipan.github.io/blob/master/assets/img/20260424-vc-chart.png)
+![vcline](/assets/img/20260424-vc-line.png)
+![vcchart](/assets/img/20260424-vc-chart.png)
 
 
 
@@ -246,4 +245,3 @@ date: 2026-05-01
 ## 结语
 
 振动控制不是单一技术，而是一套贯穿设计、施工、运维全生命周期的工程体系。
-

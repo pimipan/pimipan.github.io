@@ -22,7 +22,7 @@ author: Pimi Pan
 navbar-links:
   About Me: "aboutme"
   Resume: "aboutme"
-  简历: "简历"
+  简历: "resume"
   分享案例: 
     - Baidu: "https://www.baidu.com"
     - Google: "https://www.google.com" 
