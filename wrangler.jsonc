@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "resume",
+  "compatibility_date": "2026-06-04",
+  "observability": {
+    "enabled": true
+  },
+  "build": {
+    "command": "bundle exec jekyll build"
+  },
+  "assets": {
+    "directory": "_site"
+  }
+}

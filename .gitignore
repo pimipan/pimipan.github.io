@@ -4,6 +4,8 @@ _site
 .vagrant
 .bundle/
 vendor/bundle/
+.wrangler/
+.dev.vars*
 
 # general
 .DS_Store
