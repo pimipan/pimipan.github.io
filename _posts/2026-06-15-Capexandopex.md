@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 振动的分析和解决措施
-date: 2026-05-01
+title: 设施管理中的OPEX与CAPEX
+date: 2026-06-15
 ---
 
 
