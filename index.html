@@ -48,7 +48,7 @@
       top: 2em;
       left: 50%;
       transform: translateX(-50%);
-      width: min(90%, 820px);
+      width: min(92%, 940px);
       z-index: 99;
     }
 
@@ -128,21 +128,21 @@
     }
 
     .card-nav-cta-button {
+      --cta-pad: 21px;
+      --cta-label-width: 54px;
       height: 100%;
       border: none;
       border-radius: calc(.75rem - .35rem);
-      padding: 0 1rem;
+      padding: 0;
       background: #111;
       color: #fff;
       font-weight: 650;
       cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0;
+      display: block;
       width: 96px;
       margin-left: auto;
       overflow: hidden;
+      position: relative;
       text-decoration: none;
       white-space: nowrap;
       transition: width .34s cubic-bezier(.2, .8, .2, 1), background-color .3s ease, transform .2s ease;
@@ -150,32 +150,39 @@
 
     .card-nav-cta-button:hover,
     .card-nav-cta-button:focus-visible {
-      width: 270px;
+      width: 310px;
       background-color: #333;
       transform: translateY(-1px);
-      justify-content: flex-end;
-      gap: 10px;
     }
 
     .card-nav-cta-label {
-      flex: 0 0 auto;
+      position: absolute;
+      top: 50%;
+      right: var(--cta-pad);
+      width: var(--cta-label-width);
+      transform: translateY(-50%);
       font-size: 18px;
       font-weight: 650;
       line-height: 1;
+      text-align: center;
     }
 
     .card-nav-cta-email {
-      max-width: 0;
+      position: absolute;
+      top: 50%;
+      right: calc(var(--cta-pad) + var(--cta-label-width) + 12px);
+      width: 174px;
+      transform: translateY(-50%) translateX(12px);
       opacity: 0;
       overflow: hidden;
       font-weight: 500;
-      transition: max-width .34s cubic-bezier(.2, .8, .2, 1), opacity .2s ease;
+      transition: opacity .2s ease, transform .34s cubic-bezier(.2, .8, .2, 1);
     }
 
     .card-nav-cta-button:hover .card-nav-cta-email,
     .card-nav-cta-button:focus-visible .card-nav-cta-email {
-      max-width: 170px;
       opacity: .86;
+      transform: translateY(-50%) translateX(0);
     }
 
     .card-nav-content {
