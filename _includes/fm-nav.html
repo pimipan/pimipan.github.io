@@ -1,0 +1,25 @@
+<a class="skip-link" href="#main-content">跳到主要内容</a>
+<header class="site-header" data-site-header>
+  <div class="shell header-inner">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="Pimi Pan 设施管理作品集首页">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="brand-type"><strong>PIMI PAN</strong><small>FACILITY OPERATIONS</small></span>
+    </a>
+
+    <nav aria-label="主要导航">
+      <ul class="nav-list" id="main-nav">
+        <li><a href="{{ '/' | relative_url }}"{% if page.nav-key == 'home' %} aria-current="page"{% endif %}>概览</a></li>
+        <li><a href="{{ '/resume' | relative_url }}"{% if page.nav-key == 'resume-zh' %} aria-current="page"{% endif %}>中文履历</a></li>
+        <li><a href="{{ '/aboutme' | relative_url }}"{% if page.nav-key == 'resume-en' %} aria-current="page"{% endif %}>English CV</a></li>
+        <li><a href="{{ '/projects/' | relative_url }}"{% if page.nav-key == 'projects' %} aria-current="page"{% endif %}>项目案例</a></li>
+        <li><a href="{{ '/blog/' | relative_url }}"{% if page.nav-key == 'insights' %} aria-current="page"{% endif %}>技术分享</a></li>
+      </ul>
+    </nav>
+
+    <a class="header-contact" href="mailto:{{ site.social-network-links.email }}"><span>联系我</span><i aria-hidden="true">↗</i></a>
+    <button class="menu-toggle" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="打开导航菜单">
+      <span aria-hidden="true"></span>
+    </button>
+  </div>
+</header>
+
