@@ -1,136 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Pimi Pan 的个人履历与工程实践，展示设施管理、楼宇系统与运行可靠性方面的项目成果和技术思考。">
+  <meta http-equiv="refresh" content="0; url=homepage2.html">
+  <link rel="canonical" href="https://pimipan.github.io/homepage2.html">
   <title>Pimi Pan | 设施管理与工程实践</title>
-  <style>
-    @font-face { font-family: Work Sans; src: url('assets/homepage2/work-sans.woff2') format('woff2'); font-weight: 600; font-display: swap; }
-    @font-face { font-family: Avenir; src: url('assets/homepage2/avenir-light.woff2') format('woff2'); font-weight: 400; font-display: swap; }
-    :root { color-scheme: light; --paper: #f3f3f3; --yellow: #eea302; --red: #ff3b25; --blue: #80d8da; }
-    * { box-sizing: border-box; }
-    body { margin: 0; background: var(--paper); color: #000; font: 16px/1.6 Avenir, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif; }
-    a { color: inherit; text-decoration: none; }
-    a:focus-visible, button:focus-visible { outline: 2px solid #000; outline-offset: 6px; }
-    .skip { position: fixed; top: -80px; left: 16px; z-index: 5; padding: 8px 16px; background: white; }
-    .skip:focus { top: 8px; }
-    .header { height: 79px; padding: 24px 40px 0 42px; display: flex; justify-content: space-between; align-items: flex-start; }
-    .identity { display: flex; align-items: center; gap: 12px; line-height: 26px; }
-    .dot { width: 25px; height: 25px; border-radius: 50%; background: var(--yellow); flex: none; }
-    .name { font: 600 22px/26px Work Sans, Arial, sans-serif; }
-    .role { margin-left: -2px; }
-    .navigation { display: flex; margin-top: 2px; line-height: 24px; }
-    .navigation a { padding: 0 15px; transition: color .2s; }
-    .navigation a + a { border-left: 1px solid #000; }
-    .navigation a:hover { color: #926300; }
-    .menu-toggle { display: none; }
-    .hero { width: 962px; margin: 0 auto; min-height: 799px; padding-top: 135px; display: grid; grid-template-columns: 480px 454px; gap: 28px; align-content: start; }
-    .portrait { display: block; width: 480px; height: 480px; border-radius: 50%; object-fit: cover; }
-    .intro { padding-top: 36px; }
-    h1 { margin: 0 0 24px 5px; font: 600 100px/1.175 Work Sans, Arial, sans-serif; letter-spacing: -1px; }
-    .about { margin-left: 0; width: 100%; max-width: 454px; }
-    h2 { font: 600 22px/26px Work Sans, Arial, sans-serif; margin: 0 0 5px; }
-    .about p { margin: 0; line-height: 1.8; }
-    .about:lang(zh-CN) h2 { font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; font-weight: 600; line-height: 1.4; margin-bottom: 8px; }
-    .actions { display: flex; gap: 17px; margin-top: 38px; }
-    .circle { width: 140px; height: 140px; border: 1px solid; border-radius: 50%; display: flex; justify-content: center; align-items: center; font: 600 22px/1.2 Work Sans, Arial, sans-serif; transition: background-color .25s; }
-    .resume { background: var(--yellow); border-color: #593e03; }
-    .projects { background: var(--red); border-color: #55140c; }
-    .contact { background: var(--blue); border-color: #135454; }
-    .circle:hover { background: var(--paper); }
-    .footer { margin: 10px 40px 0; padding: 40px 10px 78px; border-top: 1px solid #ccc; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-    .footer > div:nth-child(2) { text-align: center; }
-    .footer h2 { font-size: 18px; line-height: 21px; margin-bottom: 7px; }
-    .footer p { margin: 0; line-height: 22.4px; }
-    .footer a:hover { text-decoration: underline; }
-    .copyright { text-align: right; padding-top: 5px; font-size: 13px; line-height: 18.2px !important; }
-    .copyright a { text-decoration: underline; }
-    @media (min-width: 1440px) { .hero { min-height: max(799px, calc(100vh - 262px)); } }
-    @media (max-width: 1050px) and (min-width: 701px) {
-      .hero { width: calc(100% - 80px); grid-template-columns: 1fr 1fr; gap: 28px; min-height: 720px; padding-top: 110px; }
-      .portrait { width: 100%; height: auto; aspect-ratio: 1; }
-      .intro { padding-top: 0; } h1 { font-size: 80px; }
-      .actions { gap: 10px; } .circle { width: calc((100% - 20px)/3); height: auto; aspect-ratio: 1; font-size: 18px; }
-    }
-    @media (max-width: 700px) {
-      .header { height: 90px; padding: 24px 20px 0; align-items: center; padding-bottom: 22px; position: relative; }
-      .identity { gap: 10px; } .name { font-size: 21px; } .dot { width: 25px; height: 25px; }
-      .menu-toggle { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 7px; width: 44px; height: 44px; border: 0; background: none; padding: 0; cursor: pointer; z-index: 12; }
-      .menu-toggle span { width: 22px; height: 2px; background: #000; transition: transform .2s, opacity .2s; }
-      .menu-toggle[aria-expanded="true"] { position: fixed; top: 24px; right: 20px; }
-      .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-      .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-      .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-      body.menu-open { overflow: hidden; }
-      .navigation { display: none; position: fixed; z-index: 10; inset: 0; margin: 0; padding: 90px 20px 30px; background: rgba(243,243,243,.97); flex-direction: column; align-items: center; justify-content: flex-start; gap: 10px; overflow-y: auto; }
-      .navigation.open { display: flex; }
-      .navigation a { font-size: 22px; line-height: 28px; padding: 12px 24px; }
-      .navigation a + a { border: 0; }
-      .hero { width: auto; max-width: 390px; margin: 0 auto; min-height: auto; padding: 16px 20px 40px; display: flex; flex-direction: column; gap: 16px; }
-      .intro { padding: 0; order: -1; }
-      h1 { font-size: 40px; line-height: 1.175; letter-spacing: 0; margin: 0 0 11px; }
-      .about { margin: 0; max-width: none; }
-      .about:lang(zh-CN) h2 { font-size: 19px; line-height: 1.4; margin-bottom: 5px; }
-      .about p { font-size: 16px; line-height: 1.8; }
-      .actions { gap: 10px; margin-top: 20px; width: 100%; justify-content: space-between; }
-      .circle { width: calc((100% - 20px)/3); height: auto; aspect-ratio: 1; max-width: 100px; font-size: 16px; flex-shrink: 0; }
-      .portrait { width: 100%; max-width: 350px; height: auto; aspect-ratio: 1; align-self: center; }
-      .footer { margin: 0; padding: 24px max(20px, calc((100% - 350px)/2)) 30px; grid-template-columns: 1fr; gap: 26px; }
-      .footer h2 { font-size: 17px; line-height: 20px; margin-bottom: 4px; }
-      .footer > div:nth-child(2), .copyright { text-align: left; }
-      .copyright { padding-top: 0; }
-    }
-    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
-  </style>
+  <script>window.location.replace('homepage2.html' + window.location.search + window.location.hash);</script>
 </head>
 <body>
-  <a class="skip" href="#main">Skip to Main Content</a>
-  <header class="header">
-    <a class="identity" href="/" aria-label="Pimi Pan — Homepage"><span class="dot" aria-hidden="true"></span><span class="name">Pimi Pan</span></a>
-    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-controls="navigation" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav class="navigation" id="navigation" aria-label="Main navigation"><a href="/resume">Resume</a><a href="/projects/">Projects</a><a href="/blog/">Notes</a></nav>
-  </header>
-  <main class="hero" id="main">
-    <img class="portrait" src="assets/homepage2/pimi-pan-portrait-color.png" alt="Pimi Pan wearing glasses and a gray suit against a light warm gray background" width="480" height="480" fetchpriority="high">
-    <section class="intro" aria-labelledby="hello">
-      <h1 id="hello">Hello</h1>
-      <div class="about" lang="zh-CN"><h2>关于我</h2><p>我是 Pimi Pan，专注于设施管理、楼宇系统与运行可靠性。这是对我简历的补充，记录了代表性项目、工作成果和技术思考。希望通过具体的实践，让你进一步了解我如何分析问题、权衡方案，并将工程判断转化为可验证的改进。</p></div>
-      <div class="actions"><a class="circle resume" href="/resume">Resume</a><a class="circle projects" href="/projects/">Projects</a><a class="circle contact" href="/blog/">Notes</a></div>
-    </section>
-  </main>
-  <footer class="footer">
-    <div><h2>Phone</h2><p><a href="tel:17621199271">17621199271</a></p></div>
-    <div><h2>Email</h2><p><a href="mailto:pimipan@hotmail.com">pimipan@hotmail.com</a></p></div>
-    <p class="copyright">© 2035 By Pimi Pan.<br>Powered and secured by <a href="https://github.com/">Github</a></p>
-  </footer>
-  <script>
-    const toggle = document.querySelector('.menu-toggle');
-    const navigation = document.querySelector('.navigation');
-    const mobileQuery = window.matchMedia('(max-width: 700px)');
-    function setMenu(open) {
-      navigation.classList.toggle('open', open);
-      document.body.classList.toggle('menu-open', open);
-      toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
-      document.querySelector('main').inert = open;
-      document.querySelector('footer').inert = open;
-      document.querySelector('.identity').inert = open;
-      if (open) navigation.querySelector('a').focus();
-    }
-    toggle.addEventListener('click', () => setMenu(!navigation.classList.contains('open')));
-    navigation.addEventListener('click', event => { if (event.target.closest('a')) setMenu(false); });
-    document.addEventListener('keydown', event => {
-      if (!navigation.classList.contains('open')) return;
-      if (event.key === 'Escape') { setMenu(false); toggle.focus(); }
-      if (event.key === 'Tab') {
-        const controls = [toggle, ...navigation.querySelectorAll('a')];
-        const index = controls.indexOf(document.activeElement);
-        if (event.shiftKey && index <= 0) { event.preventDefault(); controls.at(-1).focus(); }
-        else if (!event.shiftKey && index === controls.length - 1) { event.preventDefault(); toggle.focus(); }
-      }
-    });
-    mobileQuery.addEventListener('change', () => setMenu(false));
-  </script>
+  <p>正在前往首页。<a href="homepage2.html">打开 Pimi Pan 的主页</a></p>
 </body>
 </html>
