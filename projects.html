@@ -163,6 +163,36 @@ permalink: /projects/
       margin-bottom: 120px;
     }
 
+    .project-empty {
+      padding: 38px 0;
+      color: var(--muted);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 36px;
+    }
+
+    .pagination button {
+      min-width: 36px;
+      height: 36px;
+      padding: 0 10px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .pagination button:hover,
+    .pagination button[aria-current="page"] {
+      background: var(--green);
+      border-color: var(--green);
+    }
+
     .project {
       display: grid;
       grid-template-columns: 70px minmax(0, 1fr) 120px;
@@ -322,6 +352,8 @@ permalink: /projects/
         font-size: 14px;
       }
 
+      .pagination { margin-top: 28px; }
+
       .project-meta {
         grid-column: 2;
         flex-direction: row;
@@ -375,112 +407,26 @@ permalink: /projects/
       </div>
 
 
-      <a href="#contact" class="project">
-
-        <div class="number">01</div>
-
-        <div class="project-main">
-          <h3>设施运行可靠性优化</h3>
-
-          <p>
-            从运行数据、故障记录与现场条件出发，
-            识别影响系统稳定性的关键因素，并推动针对性的运行优化。
-          </p>
-
-          <div class="tags">
-            <span class="tag">Reliability</span>
-            <span class="tag">Operations</span>
-            <span class="tag">Data Analysis</span>
-          </div>
-        </div>
-
-        <div class="project-meta">
-          <span>2025</span>
-          <span class="view">View Project <span>→</span></span>
-        </div>
-
-      </a>
-
-
-      <a href="#contact" class="project">
-
-        <div class="number">02</div>
-
-        <div class="project-main">
-          <h3>楼宇系统运行策略优化</h3>
-
-          <p>
-            对系统控制逻辑、运行参数和实际需求进行重新梳理，
-            在保证可靠性的前提下改善运行效率。
-          </p>
-
-          <div class="tags">
-            <span class="tag">BMS</span>
-            <span class="tag">HVAC</span>
-            <span class="tag">Optimization</span>
-          </div>
-        </div>
-
-        <div class="project-meta">
-          <span>2024</span>
-          <span class="view">View Project <span>→</span></span>
-        </div>
-
-      </a>
-
-
-      <a href="#contact" class="project">
-
-        <div class="number">03</div>
-
-        <div class="project-main">
-          <h3>设备故障分析与改进</h3>
-
-          <p>
-            从重复故障现象出发建立问题链，
-            区分表面故障与根本原因，并形成长期改进措施。
-          </p>
-
-          <div class="tags">
-            <span class="tag">RCA</span>
-            <span class="tag">Maintenance</span>
-            <span class="tag">Risk</span>
-          </div>
-        </div>
-
-        <div class="project-meta">
-          <span>2024</span>
-          <span class="view">View Project <span>→</span></span>
-        </div>
-
-      </a>
-
-
-      <a href="#contact" class="project">
-
-        <div class="number">04</div>
-
-        <div class="project-main">
-          <h3>工程项目交付与跨团队协作</h3>
-
-          <p>
-            在设计、施工、调试与运营之间建立更清晰的信息连接，
-            降低交付阶段与实际运行需求之间的偏差。
-          </p>
-
-          <div class="tags">
-            <span class="tag">Project Delivery</span>
-            <span class="tag">Commissioning</span>
-            <span class="tag">Collaboration</span>
-          </div>
-        </div>
-
-        <div class="project-meta">
-          <span>2023</span>
-          <span class="view">View Project <span>→</span></span>
-        </div>
-
-      </a>
+      {% assign project_pages = site.pages | where_exp: "item", "item.path contains 'projects/'" | sort: "order" %}
+      {% assign project_count = 0 %}
+      {% for project in project_pages %}
+        {% if project.listed != false %}
+          {% assign project_count = project_count | plus: 1 %}
+          <a href="{{ project.url | relative_url }}" class="project" data-project>
+            <div class="number">{{ project_count | prepend: '0' | slice: -2, 2 }}</div>
+            <div class="project-main">
+              <h3>{{ project.title }}</h3>
+              <p>{{ project.summary }}</p>
+              {% if project.tags %}
+                <div class="tags">{% for tag in project.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</div>
+              {% endif %}
+            </div>
+            <div class="project-meta"><span>{{ project.year }}</span><span class="view">View Project <span>→</span></span></div>
+          </a>
+        {% endif %}
+      {% endfor %}
+      {% if project_count == 0 %}<p class="project-empty">项目详情将在这里显示。</p>{% endif %}
+      <nav class="pagination" aria-label="项目分页" hidden></nav>
 
     </section>
 
@@ -494,6 +440,37 @@ permalink: /projects/
   <div><h2>Email</h2><p><a href="mailto:pimipan@hotmail.com">pimipan@hotmail.com</a></p></div>
   <p class="copyright">© 2035 By Pimi Pan.<br>Powered and secured by <a href="https://github.com/">Github</a></p>
 </footer>
+
+<script>
+  (() => {
+    const perPage = 5;
+    const projects = [...document.querySelectorAll('[data-project]')];
+    const pagination = document.querySelector('.pagination');
+    const totalPages = Math.ceil(projects.length / perPage);
+    if (!pagination || totalPages < 2) return;
+
+    const showPage = (page) => {
+      projects.forEach((project, index) => {
+        project.hidden = Math.floor(index / perPage) !== page;
+      });
+      pagination.querySelectorAll('button').forEach((button, index) => {
+        button.toggleAttribute('aria-current', index === page);
+      });
+      pagination.scrollIntoView({ block: 'nearest' });
+    };
+
+    for (let page = 0; page < totalPages; page += 1) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = page + 1;
+      button.setAttribute('aria-label', `第 ${page + 1} 页`);
+      button.addEventListener('click', () => showPage(page));
+      pagination.append(button);
+    }
+    pagination.hidden = false;
+    showPage(0);
+  })();
+</script>
 
 </body>
 </html>
