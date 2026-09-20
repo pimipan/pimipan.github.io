@@ -61,12 +61,12 @@ permalink: /resume/
     .verbatim-bullet { padding-left: 16px; text-indent: -16px; }
     /* PDF-inspired single-column resume, with the website template palette. */
     .navigation [aria-current="page"] { color: #8a6100; }
-    .resume-page { max-width: 940px; margin: 0 auto; padding: 64px 32px 80px; font-family: "PingFang SC", "Microsoft YaHei", Arial, sans-serif; }
+    .resume-page { width: min(1180px, calc(100% - 80px)); margin: 0 auto; padding: 64px 0 80px; font-family: "PingFang SC", "Microsoft YaHei", Arial, sans-serif; }
     .profile-header { display: flex; gap: 30px; align-items: center; margin-bottom: 42px; position: relative; }
     .portrait { width: 112px; height: 112px; border-radius: 50%; object-fit: cover; flex: none; }
     .profile-copy { min-width: 0; }
     .profile-line { display: flex; align-items: baseline; flex-wrap: wrap; gap: 12px 20px; }
-    .profile-line h1 { font-size: 27px; line-height: 1.4; margin: 0; font-weight: 600; }
+    .profile-line h1 { font-size: clamp(52px, 6vw, 82px); line-height: 1.02; margin: 0; font-weight: 600; }
     .personal { color: #666; font-size: 13px; margin: 0; line-height: 1.9; }
     .contact-list { display: grid; gap: 5px; margin-top: 12px; font-size: 14px; }
     .contact-list p { margin: 0; }
@@ -77,15 +77,15 @@ permalink: /resume/
     .resume-section { padding: 30px 0; border-top: 1px solid #d3d3d3; }
     .resume-section:first-of-type { border-top: 0; padding-top: 0; }
     .section-heading { margin-bottom: 22px; }
-    .section-heading h2 { font-size: 20px; line-height: 1.5; margin: 0; font-weight: 600; }
+    .section-heading h2 { font-size: 28px; line-height: 1.5; margin: 0; font-weight: 600; }
     .section-heading span { display: none; }
-    .summary, .entry-body, .skills-content { font-size: 14px; line-height: 1.95; color: #444; }
+    .summary, .entry-body, .skills-content { font-size: 15px; line-height: 1.95; color: #444; }
     .summary p { margin: 0 0 6px; }
     .entry { margin-bottom: 32px; }
     .entry:last-child { margin-bottom: 0; }
     .entry-heading { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 22px; margin-bottom: 5px; }
-    .entry-heading h3 { font-size: 15px; line-height: 1.7; font-weight: 600; margin: 0; color: #111; }
-    .date { color: #777; font-size: 12px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .entry-heading h3 { font-size: 29px; line-height: 1.6; font-weight: 600; margin: 0; color: #111; overflow-wrap: anywhere; }
+    .date { color: #777; font-size: 13px; white-space: nowrap; font-variant-numeric: tabular-nums; }
     .entry-body p { margin: 0 0 9px; }
     .entry-body .job-title { color: #222; font-size: 14px; margin-bottom: 10px; }
     .entry-body .scope { color: #666; font-size: 13px; line-height: 1.8; }
@@ -93,25 +93,27 @@ permalink: /resume/
     .entry li { padding-left: 2px; margin-bottom: 4px; }
     .entry li::marker { color: #888; }
     .result { border-left: 3px solid var(--yellow); padding-left: 12px; margin-top: 15px !important; color: #222; }
-    .job-expectation { display: flex; flex-wrap: wrap; gap: 8px 24px; color: #444; font-size: 14px; }
+    .job-expectation { display: flex; flex-wrap: wrap; gap: 8px 24px; color: #444; font-size: 15px; }
     .job-expectation p { margin: 0; }
     .status { font-size: 12px; font-weight: 400; color: #777; margin-left: 16px; }
     .certificate-list { display: flex; gap: 12px; flex-wrap: wrap; }
     .certificate-list span { border-radius: 30px; background: #e9e9e9; padding: 5px 15px; color: #333; font-size: 13px; }
     .skills-content p { margin: 0; }
     @media (max-width: 700px) {
-      .resume-page { padding: 28px 22px 50px; }
+      .resume-page { width: calc(100% - 40px); padding: 28px 0 50px; }
       .profile-header { gap: 18px; align-items: flex-start; margin-bottom: 32px; }
       .portrait { width: 74px; height: 74px; }
       .profile-line { gap: 6px; }
-      .profile-line h1 { font-size: 24px; width: 100%; }
+      .profile-line h1 { font-size: 49px; line-height: 1.05; width: 100%; }
       .personal { font-size: 12px; }
       .contact-list { font-size: 12px; gap: 7px; margin-top: 10px; overflow-wrap: anywhere; }
       .contact-label { width: 34px; font-size: 11px; }
       .print { margin-bottom: 26px; }
       .resume-section { padding: 25px 0; }
       .section-heading { margin-bottom: 17px; }
-      .section-heading h2 { font-size: 19px; }
+      .section-heading h2 { font-size: 23px; }
+      .entry-heading h3 { font-size: 23px; }
+      .job-expectation { font-size: 14px; }
       .entry-heading { gap: 3px; flex-direction: column; margin-bottom: 8px; }
       .entry { margin-bottom: 30px; }
       .summary, .entry-body, .skills-content { font-size: 14px; line-height: 1.9; }
@@ -121,7 +123,10 @@ permalink: /resume/
     @media print {
       body { background: white; color: black; }
       .header, .skip, .print, .footer { display: none !important; }
-      .resume-page { max-width: none; margin: 0; padding: 0; }
+      .resume-page { width: 100%; max-width: none; margin: 0; padding: 0; }
+      .profile-line h1 { font-size: 27px; line-height: 1.4; }
+      .section-heading h2 { font-size: 20px; }
+      .entry-heading h3 { font-size: 15px; line-height: 1.7; }
       .profile-header { margin-bottom: 24px; }
       .portrait { width: 85px; height: 85px; }
       .resume-section { padding: 20px 0; }
