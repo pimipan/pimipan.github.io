@@ -10,11 +10,13 @@ permalink: /projects/
   <title>Projects | Pimi Pan</title>
 
   <style>
+    @font-face { font-family: Work Sans; src: url('{{ '/assets/homepage2/work-sans.woff2' | relative_url }}') format('woff2'); font-weight: 600; font-display: swap; }
+    @font-face { font-family: Avenir; src: url('{{ '/assets/homepage2/avenir-light.woff2' | relative_url }}') format('woff2'); font-weight: 400; font-display: swap; }
     :root {
-      --bg: #F1F0EC;
-      --text: #222220;
-      --muted: #74736E;
-      --line: #D8D5CD;
+      --bg: #f3f3f3;
+      --text: #000;
+      --muted: #555;
+      --line: #ccc;
       --green: #8DA9A2;
       --green-dark: #667D77;
       --blue: #94A4B5;
@@ -33,11 +35,10 @@ permalink: /projects/
     }
 
     body {
+      margin: 0;
       background: var(--bg);
       color: var(--text);
-      font-family:
-        Inter, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-family: Avenir, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
       line-height: 1.6;
     }
 
@@ -53,45 +54,51 @@ permalink: /projects/
 
     /* ---------------- NAV ---------------- */
 
-    header {
-      height: 92px;
+    .header {
+      height: 79px;
+      padding: 24px 40px 0 42px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: flex-start;
     }
 
-    .logo {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 22px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-    }
-
-    nav {
+    .identity {
       display: flex;
       align-items: center;
-      gap: 36px;
-      font-size: 14px;
+      gap: 12px;
+      line-height: 26px;
     }
 
-    nav a {
-      position: relative;
+    .dot {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #eea302;
+      flex: none;
     }
 
-    nav a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -5px;
-      width: 0;
-      height: 1px;
-      background: var(--text);
-      transition: width .25s ease;
+    .name {
+      font: 600 22px/26px Work Sans, Arial, sans-serif;
     }
 
-    nav a:hover::after,
-    nav a.active::after {
-      width: 100%;
+    .navigation {
+      display: flex;
+      margin-top: 2px;
+      line-height: 24px;
+    }
+
+    .navigation a {
+      padding: 0 15px;
+      transition: color .2s;
+    }
+
+    .navigation a + a {
+      border-left: 1px solid #000;
+    }
+
+    .navigation a:hover,
+    .navigation a.active {
+      color: #926300;
     }
 
     /* ---------------- HERO ---------------- */
@@ -299,14 +306,21 @@ permalink: /projects/
       opacity: .8;
     }
 
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 28px 0 38px;
-      display: flex;
-      justify-content: space-between;
-      color: var(--muted);
-      font-size: 12px;
+    .footer {
+      margin: 10px 40px 0;
+      padding: 40px 10px 78px;
+      border-top: 1px solid #ccc;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
     }
+
+    .footer > div:nth-child(2) { text-align: center; }
+    .footer h2 { font: 600 18px/21px Work Sans, Arial, sans-serif; margin-bottom: 7px; }
+    .footer p { margin: 0; line-height: 22.4px; }
+    .footer a:hover { text-decoration: underline; }
+    .copyright { text-align: right; padding-top: 5px; font-size: 13px; line-height: 18.2px !important; }
+    .copyright a { text-decoration: underline; }
 
     /* ==================================================
        MOBILE
@@ -318,21 +332,23 @@ permalink: /projects/
         width: calc(100% - 40px);
       }
 
-      header {
-        height: 70px;
+      .header {
+        height: 90px;
+        padding: 24px 20px 22px;
+        align-items: center;
+        position: relative;
       }
 
-      .logo {
-        font-size: 18px;
-      }
-
-      nav {
-        gap: 18px;
-        font-size: 12px;
-      }
-
-      nav .hide-mobile {
-        display: none;
+      .identity { gap: 10px; }
+      .name { font-size: 21px; }
+      .navigation { margin-top: 0; }
+      .navigation a { padding: 0 10px; font-size: 14px; }
+      .navigation a:last-child { display: none; }
+      .footer {
+        margin: 0;
+        padding: 24px max(20px, calc((100% - 350px)/2)) 30px;
+        grid-template-columns: 1fr;
+        gap: 26px;
       }
 
       .hero {
@@ -402,10 +418,9 @@ permalink: /projects/
         width: max-content;
       }
 
-      footer {
-        flex-direction: column;
-        gap: 8px;
-      }
+      .footer h2 { font-size: 17px; line-height: 20px; margin-bottom: 4px; }
+      .footer > div:nth-child(2), .copyright { text-align: left; }
+      .copyright { padding-top: 0; }
     }
 
   </style>
@@ -413,18 +428,16 @@ permalink: /projects/
 
 <body>
 
+<header class="header">
+  <a class="identity" href="{{ '/' | relative_url }}" aria-label="Pimi Pan — Homepage"><span class="dot" aria-hidden="true"></span><span class="name">Pimi Pan</span></a>
+  <nav class="navigation" aria-label="Main navigation">
+    <a href="{{ '/resume/' | relative_url }}">Resume</a>
+    <a href="{{ '/projects/' | relative_url }}" class="active">Projects</a>
+    <a href="{{ '/blog/' | relative_url }}">Notes</a>
+  </nav>
+</header>
+
 <div class="page">
-
-  <header>
-    <a href="{{ '/' | relative_url }}" class="logo">Pimi Pan</a>
-
-    <nav>
-      <a href="{{ '/' | relative_url }}">Home</a>
-      <a href="{{ '/projects/' | relative_url }}" class="active">Projects</a>
-      <a href="{{ '/blog/' | relative_url }}" class="hide-mobile">Notes</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
 
 
   <main>
@@ -625,12 +638,13 @@ permalink: /projects/
   </main>
 
 
-  <footer>
-    <span>© 2035 Pimi Pan</span>
-    <span>Facilities · Systems · Operations</span>
-  </footer>
-
 </div>
+
+<footer class="footer">
+  <div><h2>Phone</h2><p><a href="tel:17621199271">17621199271</a></p></div>
+  <div><h2>Email</h2><p><a href="mailto:pimipan@hotmail.com">pimipan@hotmail.com</a></p></div>
+  <p class="copyright">© 2035 By Pimi Pan.<br>Powered and secured by <a href="https://github.com/">Github</a></p>
+</footer>
 
 </body>
 </html>
