@@ -219,7 +219,7 @@ permalink: /projects/
     }
 
     .project[hidden] {
-      display: none;
+      display: none !important;
     }
 
     .project:hover {
@@ -474,7 +474,9 @@ permalink: /projects/
     const showPage = (page, shouldScroll = false) => {
       currentPage = page;
       projects.forEach((project, index) => {
-        project.hidden = Math.floor(index / perPage) !== page;
+        const isCurrentPage = Math.floor(index / perPage) === page;
+        project.hidden = !isCurrentPage;
+        project.style.display = isCurrentPage ? 'grid' : 'none';
       });
       pageButtons.forEach((button, index) => {
         button.toggleAttribute('aria-current', index === page);
