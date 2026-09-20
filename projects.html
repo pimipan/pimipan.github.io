@@ -1,92 +1,637 @@
 ---
-layout: fm
-nav-key: projects
-language: zh-CN
-title: 项目案例
-description: Pimi Pan 的设施管理项目案例，涵盖团队过渡、BSL-2 实验室、锅炉低氮改造与超高层建筑运营。
+layout: null
 permalink: /projects/
 ---
-<section class="page-hero">
-  <div class="shell page-hero-grid">
-    <div><span class="eyebrow">PROJECT RECORD / 项目档案</span><h1>从工程交付到稳定运营</h1><p>这些案例展示我如何界定风险、组织资源、协调利益相关方，并把技术方案转化为可靠、合规、可持续的设施运营结果。</p></div>
-    <div class="page-coordinates" aria-hidden="true"><span>SHEET / PRJ-01</span><span>DISCIPLINE / FM</span><span>STATUS / DELIVERED</span></div>
-  </div>
-</section>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects | Pimi Pan</title>
 
-<section class="project-page shell">
-  <article class="project-case" id="team-transition">
-    <aside>
-      <div class="project-case-number">01</div>
-      <div class="project-case-meta"><span>2024.01—2024.05</span><span>TEAM / OPERATIONS</span><span>ROLE / PROJECT LEAD</span></div>
-    </aside>
-    <div>
-      <h2>设施管理团队平稳过渡</h2>
-      <p class="project-summary">在设施服务团队切换期间，运营中断、知识流失与服务标准下降是最直接的风险。项目重点不是“更换人员”，而是把岗位、知识、标准和现场节奏完整迁移。</p>
-      <div class="project-detail-grid">
-        <div class="project-detail"><span>CHALLENGE / 挑战</span><p>在不显著干扰日常运营的前提下完成团队过渡，并让新成员快速适应现场的特殊设施要求。</p></div>
-        <div class="project-detail"><span>ACTION / 行动</span><p>组织招聘与岗位匹配，建立现场培训、技术知识传递和服务标准对齐机制，跟踪过渡期工作质量。</p></div>
-        <div class="project-detail"><span>OUTCOME / 结果</span><p>完成新团队组建与培训，保持现场服务连续性，并通过技术培训提升团队整体能力。</p></div>
+  <style>
+    :root {
+      --bg: #F1F0EC;
+      --text: #222220;
+      --muted: #74736E;
+      --line: #D8D5CD;
+      --green: #8DA9A2;
+      --green-dark: #667D77;
+      --blue: #94A4B5;
+      --sand: #C7AE82;
+      --tag: #E8E6E0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family:
+        Inter, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 80px));
+      margin: 0 auto;
+    }
+
+    /* ---------------- NAV ---------------- */
+
+    header {
+      height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      font-size: 14px;
+    }
+
+    nav a {
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 1px;
+      background: var(--text);
+      transition: width .25s ease;
+    }
+
+    nav a:hover::after,
+    nav a.active::after {
+      width: 100%;
+    }
+
+    /* ---------------- HERO ---------------- */
+
+    .hero {
+      padding: 90px 0 95px;
+      max-width: 760px;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+      color: var(--muted);
+    }
+
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
+      font-size: clamp(52px, 6vw, 82px);
+      line-height: 1.02;
+      letter-spacing: -.035em;
+    }
+
+    .hero-line {
+      width: 45px;
+      height: 2px;
+      background: var(--green-dark);
+      margin: 32px 0;
+    }
+
+    .hero p {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    /* ---------------- PROJECT SECTION ---------------- */
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-heading h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 28px;
+      font-weight: 400;
+    }
+
+    .section-heading span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .projects {
+      margin-bottom: 120px;
+    }
+
+    .project {
+      display: grid;
+      grid-template-columns: 70px minmax(0, 1fr) 120px;
+      gap: 28px;
+      padding: 38px 0;
+      border-bottom: 1px solid var(--line);
+      transition: padding .25s ease;
+    }
+
+    .project:hover {
+      padding-left: 10px;
+    }
+
+    .number {
+      color: var(--muted);
+      font-family: Georgia, serif;
+      font-size: 16px;
+    }
+
+    .project-main h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
+      font-size: 29px;
+      margin-bottom: 9px;
+    }
+
+    .project-main p {
+      color: var(--muted);
+      max-width: 680px;
+      margin-bottom: 18px;
+      font-size: 15px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      background: var(--tag);
+      padding: 5px 12px;
+      border-radius: 999px;
+      color: #66645F;
+      font-size: 11px;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .view {
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    .view span {
+      display: inline-block;
+      transition: transform .2s ease;
+    }
+
+    .project:hover .view span {
+      transform: translateX(5px);
+    }
+
+    /* ---------------- CAPABILITY ---------------- */
+
+    .capabilities {
+      padding: 80px 0 100px;
+      border-top: 1px solid var(--line);
+    }
+
+    .capabilities h2 {
+      font-family: Georgia, serif;
+      font-size: 38px;
+      font-weight: 400;
+      margin-bottom: 45px;
+    }
+
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+
+    .cap {
+      border-top: 2px solid var(--green);
+      padding-top: 18px;
+    }
+
+    .cap h3 {
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    .cap p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* ---------------- CONTACT ---------------- */
+
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: center;
+      border-top: 1px solid var(--line);
+      padding: 70px 0;
+    }
+
+    .contact h2 {
+      font-family: Georgia, serif;
+      font-size: 36px;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+
+    .contact p {
+      color: var(--muted);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 23px;
+      border-radius: 999px;
+      background: var(--green-dark);
+      color: white;
+      font-size: 13px;
+      transition: opacity .2s ease;
+    }
+
+    .button:hover {
+      opacity: .8;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 0 38px;
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* ==================================================
+       MOBILE
+       ================================================== */
+
+    @media (max-width: 700px) {
+
+      .page {
+        width: calc(100% - 40px);
+      }
+
+      header {
+        height: 70px;
+      }
+
+      .logo {
+        font-size: 18px;
+      }
+
+      nav {
+        gap: 18px;
+        font-size: 12px;
+      }
+
+      nav .hide-mobile {
+        display: none;
+      }
+
+      .hero {
+        padding: 65px 0 70px;
+      }
+
+      .eyebrow {
+        font-size: 10px;
+        margin-bottom: 18px;
+      }
+
+      h1 {
+        font-size: 49px;
+        line-height: 1.05;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .section-heading {
+        align-items: center;
+      }
+
+      .section-heading h2 {
+        font-size: 23px;
+      }
+
+      .project {
+        grid-template-columns: 35px 1fr;
+        gap: 12px;
+        padding: 28px 0;
+      }
+
+      .project:hover {
+        padding-left: 0;
+      }
+
+      .project-main h3 {
+        font-size: 23px;
+      }
+
+      .project-main p {
+        font-size: 14px;
+      }
+
+      .project-meta {
+        grid-column: 2;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .cap-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px 20px;
+      }
+
+      .contact {
+        grid-template-columns: 1fr;
+      }
+
+      .contact h2 {
+        font-size: 30px;
+      }
+
+      .button {
+        width: max-content;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <header>
+    <a href="{{ '/' | relative_url }}" class="logo">Pimi Pan</a>
+
+    <nav>
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <a href="{{ '/projects/' | relative_url }}" class="active">Projects</a>
+      <a href="{{ '/blog/' | relative_url }}" class="hide-mobile">Notes</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+
+  <main>
+
+    <section class="hero">
+
+      <div class="eyebrow">Facilities · Systems · Operations</div>
+
+      <h1>
+        Projects &<br>
+        Engineering Practice.
+      </h1>
+
+      <div class="hero-line"></div>
+
+      <p>
+        这里记录我参与的代表性项目。相比展示项目本身，
+        我更希望说明自己如何识别问题、分析系统、协调资源，
+        并最终把工程判断转化为可以验证的改进结果。
+      </p>
+
+    </section>
+
+
+    <section class="projects">
+
+      <div class="section-heading">
+        <h2>Selected Projects</h2>
+        <span>项目经历</span>
       </div>
-      <div class="project-tags"><span>TEAM TRANSITION</span><span>TRAINING</span><span>SERVICE CONTINUITY</span><span>STANDARDIZATION</span></div>
-    </div>
-  </article>
 
-  <article class="project-case" id="bsl2-laboratory">
-    <aside>
-      <div class="project-case-number">02</div>
-      <div class="project-case-meta"><span>2021.10—2021.12</span><span>LAB / HVAC</span><span>ROLE / HVAC ENGINEER</span></div>
-    </aside>
-    <div>
-      <h2>二级生物安全实验室 HVAC 项目</h2>
-      <p class="project-summary">实验室设施的价值不只来自安装完成，更来自可验证的环境控制和可执行的运行程序。项目同时处理系统设计、现场交付与后续维护要求。</p>
-      <div class="project-detail-grid">
-        <div class="project-detail"><span>CHALLENGE / 挑战</span><p>为微生物与分子研究提供稳定环境，并满足国家标准及生物安全协议对 HVAC 运行的要求。</p></div>
-        <div class="project-detail"><span>ACTION / 行动</span><p>参与 HVAC 系统设计、安装与维护，围绕实验室环境制定专用操作程序和运行控制要求。</p></div>
-        <div class="project-detail"><span>OUTCOME / 结果</span><p>完成系统交付并建立适用于实验室场景的运行程序，为后续安全、稳定使用提供基础。</p></div>
+
+      <a href="#contact" class="project">
+
+        <div class="number">01</div>
+
+        <div class="project-main">
+          <h3>设施运行可靠性优化</h3>
+
+          <p>
+            从运行数据、故障记录与现场条件出发，
+            识别影响系统稳定性的关键因素，并推动针对性的运行优化。
+          </p>
+
+          <div class="tags">
+            <span class="tag">Reliability</span>
+            <span class="tag">Operations</span>
+            <span class="tag">Data Analysis</span>
+          </div>
+        </div>
+
+        <div class="project-meta">
+          <span>2025</span>
+          <span class="view">View Project <span>→</span></span>
+        </div>
+
+      </a>
+
+
+      <a href="#contact" class="project">
+
+        <div class="number">02</div>
+
+        <div class="project-main">
+          <h3>楼宇系统运行策略优化</h3>
+
+          <p>
+            对系统控制逻辑、运行参数和实际需求进行重新梳理，
+            在保证可靠性的前提下改善运行效率。
+          </p>
+
+          <div class="tags">
+            <span class="tag">BMS</span>
+            <span class="tag">HVAC</span>
+            <span class="tag">Optimization</span>
+          </div>
+        </div>
+
+        <div class="project-meta">
+          <span>2024</span>
+          <span class="view">View Project <span>→</span></span>
+        </div>
+
+      </a>
+
+
+      <a href="#contact" class="project">
+
+        <div class="number">03</div>
+
+        <div class="project-main">
+          <h3>设备故障分析与改进</h3>
+
+          <p>
+            从重复故障现象出发建立问题链，
+            区分表面故障与根本原因，并形成长期改进措施。
+          </p>
+
+          <div class="tags">
+            <span class="tag">RCA</span>
+            <span class="tag">Maintenance</span>
+            <span class="tag">Risk</span>
+          </div>
+        </div>
+
+        <div class="project-meta">
+          <span>2024</span>
+          <span class="view">View Project <span>→</span></span>
+        </div>
+
+      </a>
+
+
+      <a href="#contact" class="project">
+
+        <div class="number">04</div>
+
+        <div class="project-main">
+          <h3>工程项目交付与跨团队协作</h3>
+
+          <p>
+            在设计、施工、调试与运营之间建立更清晰的信息连接，
+            降低交付阶段与实际运行需求之间的偏差。
+          </p>
+
+          <div class="tags">
+            <span class="tag">Project Delivery</span>
+            <span class="tag">Commissioning</span>
+            <span class="tag">Collaboration</span>
+          </div>
+        </div>
+
+        <div class="project-meta">
+          <span>2023</span>
+          <span class="view">View Project <span>→</span></span>
+        </div>
+
+      </a>
+
+    </section>
+
+
+    <section class="capabilities">
+
+      <h2>What these projects demonstrate.</h2>
+
+      <div class="cap-grid">
+
+        <div class="cap">
+          <h3>01 · 问题分析</h3>
+          <p>
+            从复杂运行现象中找到真正影响结果的关键变量。
+          </p>
+        </div>
+
+        <div class="cap">
+          <h3>02 · 系统思维</h3>
+          <p>
+            不孤立处理设备问题，而是理解系统之间的相互影响。
+          </p>
+        </div>
+
+        <div class="cap">
+          <h3>03 · 推动执行</h3>
+          <p>
+            将分析转化为明确措施，并协调相关团队推动落地。
+          </p>
+        </div>
+
+        <div class="cap">
+          <h3>04 · 持续改进</h3>
+          <p>
+            通过数据与实际运行结果验证措施是否真正有效。
+          </p>
+        </div>
+
       </div>
-      <div class="project-tags"><span>BSL-2</span><span>HVAC</span><span>ENVIRONMENTAL CONTROL</span><span>SOP</span><span>BIOSAFETY</span></div>
-    </div>
-  </article>
 
-  <article class="project-case" id="boiler-retrofit">
-    <aside>
-      <div class="project-case-number">03</div>
-      <div class="project-case-meta"><span>2020.04—2020.10</span><span>UTILITY / COMPLIANCE</span><span>ROLE / PROJECT LEAD</span></div>
-    </aside>
-    <div>
-      <h2>锅炉低氮燃烧器更换</h2>
-      <p class="project-summary">设施改造必须同时满足法规、供能连续性与投资合理性。该项目以更严格的氮氧化物排放标准为触发点，在既有酒店供汽约束下完成设备更换。</p>
-      <div class="project-detail-grid">
-        <div class="project-detail"><span>CHALLENGE / 挑战</span><p>在满足新排放标准的同时控制停机影响，确保酒店蒸汽供应不中断。</p></div>
-        <div class="project-detail"><span>ACTION / 行动</span><p>统筹端到端维护计划、改造节奏与供应保障，并将项目结果与可持续发展目标对齐。</p></div>
-        <div class="project-detail"><span>OUTCOME / 结果</span><p>完成燃烧器改造与合规目标，保障蒸汽供应，并成功获得政府补贴。</p></div>
+    </section>
+
+
+    <section class="contact" id="contact">
+
+      <div>
+        <h2>Let’s work together.</h2>
+        <p>
+          如果你正在寻找能够理解系统、解决问题并推动执行的人，
+          欢迎与我联系。
+        </p>
       </div>
-      <div class="project-tags"><span>BOILER</span><span>LOW-NOX</span><span>COMPLIANCE</span><span>UTILITY CONTINUITY</span><span>SUBSIDY</span></div>
-    </div>
-  </article>
 
-  <article class="project-case" id="high-rise-operations">
-    <aside>
-      <div class="project-case-number">04</div>
-      <div class="project-case-meta"><span>2020.06—2021.07</span><span>HIGH-RISE / HVAC</span><span>ROLE / HVAC SUPERVISOR</span></div>
-    </aside>
-    <div>
-      <h2>570,000㎡ 超高层综合体暖通运营</h2>
-      <p class="project-summary">在办公、零售、酒店和观光等不同业态共同运行的超高层建筑中，暖通服务必须平衡舒适度、能效、应急响应与政府合规要求。</p>
-      <div class="project-detail-grid">
-        <div class="project-detail"><span>CHALLENGE / 挑战</span><p>面对多业态、超大体量和高服务标准，保障暖通系统稳定运行并快速处理紧急维修。</p></div>
-        <div class="project-detail"><span>ACTION / 行动</span><p>监督维护质量，推动节能项目，协调政府环境检查，并准备 BOMA 奖项评估材料。</p></div>
-        <div class="project-detail"><span>OUTCOME / 结果</span><p>保持复杂建筑暖通运行与安全合规，并通过新的维护方法持续改善系统效率。</p></div>
-      </div>
-      <div class="project-tags"><span>570,000 SQM</span><span>SUPERTALL</span><span>MIXED-USE</span><span>BOMA</span><span>ENERGY</span></div>
-    </div>
-  </article>
-</section>
+      <a href="mailto:pimipan@hotmail.com" class="button">
+        Contact Me →
+      </a>
 
-<section class="contact-section shell">
-  <div class="contact-panel drawing-frame">
-    <div><span class="section-kicker">PROJECT DISCUSSION</span><h2>想进一步了解项目职责与方法？</h2><p>欢迎就岗位匹配、项目细节或设施运营方法与我联系。</p></div>
-    <a class="button button-primary" href="mailto:{{ site.social-network-links.email }}"><span>联系我</span><span aria-hidden="true">↗</span></a>
-  </div>
-</section>
+    </section>
+
+  </main>
+
+
+  <footer>
+    <span>© 2035 Pimi Pan</span>
+    <span>Facilities · Systems · Operations</span>
+  </footer>
+
+</div>
+
+</body>
+</html>
 
