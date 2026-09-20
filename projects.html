@@ -193,6 +193,22 @@ permalink: /projects/
       border-color: var(--green);
     }
 
+    .pagination .pagination-nav {
+      min-width: 88px;
+      height: 42px;
+      font-size: 15px;
+    }
+
+    .pagination button:disabled {
+      cursor: not-allowed;
+      opacity: .38;
+    }
+
+    .pagination button:disabled:hover {
+      background: transparent;
+      border-color: var(--line);
+    }
+
     .project {
       display: grid;
       grid-template-columns: 70px minmax(0, 1fr) 120px;
@@ -443,30 +459,51 @@ permalink: /projects/
 
 <script>
   (() => {
-    const perPage = 5;
+    const perPage = 6;
     const projects = [...document.querySelectorAll('[data-project]')];
     const pagination = document.querySelector('.pagination');
     const totalPages = Math.ceil(projects.length / perPage);
     if (!pagination || totalPages < 2) return;
 
-    const showPage = (page) => {
+    let currentPage = 0;
+    const pageButtons = [];
+    const showPage = (page, shouldScroll = false) => {
+      currentPage = page;
       projects.forEach((project, index) => {
         project.hidden = Math.floor(index / perPage) !== page;
       });
-      pagination.querySelectorAll('button').forEach((button, index) => {
+      pageButtons.forEach((button, index) => {
         button.toggleAttribute('aria-current', index === page);
       });
-      pagination.scrollIntoView({ block: 'nearest' });
+      previous.disabled = page === 0;
+      next.disabled = page === totalPages - 1;
+      if (shouldScroll) pagination.scrollIntoView({ block: 'nearest' });
     };
+
+    const previous = document.createElement('button');
+    previous.type = 'button';
+    previous.className = 'pagination-nav';
+    previous.textContent = '上一页';
+    previous.addEventListener('click', () => showPage(currentPage - 1, true));
+    pagination.append(previous);
 
     for (let page = 0; page < totalPages; page += 1) {
       const button = document.createElement('button');
       button.type = 'button';
       button.textContent = page + 1;
       button.setAttribute('aria-label', `第 ${page + 1} 页`);
-      button.addEventListener('click', () => showPage(page));
+      button.addEventListener('click', () => showPage(page, true));
       pagination.append(button);
+      pageButtons.push(button);
     }
+
+    const next = document.createElement('button');
+    next.type = 'button';
+    next.className = 'pagination-nav';
+    next.textContent = '下一页';
+    next.addEventListener('click', () => showPage(currentPage + 1, true));
+    pagination.append(next);
+
     pagination.hidden = false;
     showPage(0);
   })();
