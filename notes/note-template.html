@@ -1,0 +1,25 @@
+---
+published: false
+title: 笔记标题
+summary: 用一句话概述这篇笔记的主题、结论或适用场景。
+year: 2026
+order: 99
+tags:
+  - Facilities
+  - Operations
+---
+<!-- 复制此文件并重命名为新的 .html 文件，保存在 notes/ 目录。
+     将 published 改为 true 或删除该字段后，Notes 汇总页会在下一次构建时自动显示此笔记。 -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }} | Pimi Pan</title>
+</head>
+<body>
+  <p><a href="{{ '/notes/' | relative_url }}">← 返回 Notes</a></p>
+  <h1>{{ page.title }}</h1>
+  <p>在这里添加笔记正文。</p>
+</body>
+</html>
