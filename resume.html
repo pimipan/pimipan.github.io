@@ -68,9 +68,9 @@ permalink: /resume/
     .profile-line { display: flex; align-items: baseline; flex-wrap: wrap; gap: 12px 20px; }
     .profile-line h1 { font-size: clamp(52px, 6vw, 82px); line-height: 1.02; margin: 0; font-weight: 600; }
     .personal { color: #666; font-size: 13px; margin: 0; line-height: 1.9; }
-    .contact-list { display: grid; gap: 5px; margin-top: 12px; font-size: 14px; }
-    .contact-list p { margin: 0; }
-    .contact-label { display: inline-block; width: 46px; color: #777; font-size: 12px; }
+    .contact-list { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 5px 16px; align-items: baseline; margin: 12px 0 0; font-size: 14px; }
+    .contact-list dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+    .contact-label { color: #666; font-size: 12px; white-space: nowrap; }
     .contact-list a:hover { text-decoration: underline; }
     .print { display: block; margin: 0 0 22px auto; padding: 8px 15px; border: 1px solid #aaa; border-radius: 24px; background: transparent; font: inherit; font-size: 12px; cursor: pointer; }
     .print:hover { background: var(--yellow); border-color: #593e03; }
@@ -106,8 +106,8 @@ permalink: /resume/
       .profile-line { gap: 6px; }
       .profile-line h1 { font-size: 49px; line-height: 1.05; width: 100%; }
       .personal { font-size: 12px; }
-      .contact-list { font-size: 12px; gap: 7px; margin-top: 10px; overflow-wrap: anywhere; }
-      .contact-label { width: 34px; font-size: 11px; }
+      .contact-list { font-size: 12px; gap: 7px 10px; margin-top: 10px; }
+      .contact-label { font-size: 11px; }
       .print { margin-bottom: 26px; }
       .resume-section { padding: 25px 0; }
       .section-heading { margin-bottom: 17px; }
@@ -119,6 +119,10 @@ permalink: /resume/
       .summary, .entry-body, .skills-content { font-size: 14px; line-height: 1.9; }
       .entry li { margin-bottom: 8px; }
       .status { display: inline-block; margin-left: 10px; }
+    }
+    @media screen and (max-width: 400px) {
+      .profile-header { flex-direction: column; }
+      .profile-copy { width: 100%; }
     }
     @media print {
       body { background: white; color: black; }
@@ -151,7 +155,7 @@ permalink: /resume/
 <main class="resume-page" id="main">
 <button class="print" type="button" onclick="window.print()">打印 / 保存 PDF ↗</button>
 <div id="pdf-content">
-<div class="profile-header"><img class="portrait" src="/assets/img/resume-portrait.jpg" alt="潘敏的个人照片" width="112" height="112"><div class="profile-copy"><div class="profile-line"><h1>潘敏</h1><p class="personal">男 · 33 岁 · 工作 11 年</p></div><div class="contact-list"><p><a href="tel:17621199271">17621199271</a></p><p><a href="mailto:pimipan@hotmail.com">pimipan@hotmail.com</a></p><p><a href="https://pimipan.github.io">pimipan.github.io</a></p></div></div></div>
+<div class="profile-header"><img class="portrait" src="/assets/img/resume-portrait.jpg" alt="潘敏的个人照片" width="112" height="112"><div class="profile-copy"><div class="profile-line"><h1>潘敏</h1><p class="personal">男 · 33 岁 · 工作 11 年</p></div><dl class="contact-list"><dt class="contact-label">Tel</dt><dd><a href="tel:17621199271">17621199271</a></dd><dt class="contact-label">Email</dt><dd><a href="mailto:pimipan@hotmail.com">pimipan@hotmail.com</a></dd><dt class="contact-label">Website</dt><dd><a href="https://pimipan.github.io">pimipan.github.io</a></dd></dl></div></div>
 <section class="resume-section" aria-labelledby="summary"><div class="section-heading"><h2 id="summary">优势亮点</h2></div><div class="summary"><p>10 年以上设施设备及公用工程管理工作经验。精通暖通、给排水、强弱电、消防排烟、 UPS 、楼宇自控等各类设备的原理与管理。</p>
 <p>熟悉管理运维工作在项目全周期流程下的重点和难点，有设计、施工和运维经验。且具备跨部门协作沟通能力，保证项目落地与平稳运行。</p>
 <p>管理方面有 4 人小团队管理经验和 36 人的外包团队管理经验。</p>
