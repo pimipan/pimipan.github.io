@@ -122,9 +122,12 @@ permalink: /resume/
       .profile-copy { width: 100%; }
     }
     @media print {
+      /* A zero page margin suppresses browser-supplied URL/date page headers and footers. */
+      @page { margin: 0; }
       body { background: white; color: black; }
       .header, .skip, .print, .footer { display: none !important; }
       .resume-page { width: 100%; max-width: none; margin: 0; padding: 0; }
+      #pdf-content { margin: 18mm; }
       .profile-line h1 { font-size: 27px; line-height: 1.4; }
       .section-heading h2 { font-size: 20px; }
       .entry-heading h3 { font-size: 15px; line-height: 1.7; }
@@ -136,7 +139,6 @@ permalink: /resume/
       .entry-heading { break-after: avoid; }
       .entry { margin-bottom: 22px; }
       li { break-inside: avoid; }
-      @page { margin: 18mm; }
     }
 
 
