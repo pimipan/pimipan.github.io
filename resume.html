@@ -120,6 +120,11 @@ permalink: /resume/
       .entry li { margin-bottom: 8px; }
       .status { display: inline-block; margin-left: 10px; }
     }
+    @media screen and (max-width: 700px) {
+      .profile-copy { display: grid; grid-template-columns: max-content minmax(0, 1fr); column-gap: 10px; }
+      .profile-line, .personal, .contact-list { display: grid; grid-column: 1 / -1; grid-template-columns: subgrid; column-gap: 10px; }
+      .profile-line h1 { grid-column: 1 / -1; }
+    }
     @media screen and (max-width: 400px) {
       .profile-header { flex-direction: column; }
       .profile-copy { width: 100%; }
@@ -159,7 +164,7 @@ permalink: /resume/
 <main class="resume-page" id="main">
 <button class="print" type="button" onclick="window.print()">打印 / 保存 PDF ↗</button>
 <div id="pdf-content">
-<div class="profile-header"><img class="portrait" src="/assets/img/resume-portrait.jpg" alt="潘敏的个人照片" width="112" height="112"><div class="profile-copy"><div class="profile-line"><h1>潘敏</h1><p class="personal">男 · 1992年 </p></div><dl class="contact-list"><dt class="contact-label">Tel</dt><dd><a href="tel:17621199271">17621199271</a></dd><dt class="contact-label">Email</dt><dd><a href="mailto:pimipan@hotmail.com">pimipan@hotmail.com</a></dd><dt class="contact-label">Website</dt><dd><a href="https://pimipan.github.io">pimipan.github.io</a></dd></dl></div></div>
+<div class="profile-header"><img class="portrait" src="/assets/img/resume-portrait.jpg" alt="潘敏的个人照片" width="112" height="112"><div class="profile-copy"><div class="profile-line"><h1>潘敏</h1><p class="personal"><span>男 ·</span> <span>1992年</span> </p></div><dl class="contact-list"><dt class="contact-label">Tel</dt><dd><a href="tel:17621199271">17621199271</a></dd><dt class="contact-label">Email</dt><dd><a href="mailto:pimipan@hotmail.com">pimipan@hotmail.com</a></dd><dt class="contact-label">Website</dt><dd><a href="https://pimipan.github.io">pimipan.github.io</a></dd></dl></div></div>
 <section class="resume-section" aria-labelledby="summary"><div class="section-heading"><h2 id="summary">优势亮点</h2></div><div class="summary"><p>10 年以上设施设备及公用工程管理工作经验。精通暖通、给排水、强弱电、消防排烟、 UPS 、楼宇自控等各类设备的原理与管理。</p>
 <p>熟悉管理运维工作在项目全周期流程下的重点和难点，有设计、施工和运维经验。且具备跨部门协作沟通能力，保证项目落地与平稳运行。</p>
 <p>管理方面有 4 人小团队管理经验和 36 人的外包团队管理经验。</p>

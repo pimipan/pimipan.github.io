@@ -102,6 +102,9 @@ permalink: /notes/
       color: #926300;
     }
 
+    .menu-toggle { display: none; }
+    a:focus-visible, button:focus-visible { outline: 2px solid #000; outline-offset: 6px; }
+
     /* ---------------- HERO ---------------- */
 
     .hero {
@@ -319,9 +322,17 @@ permalink: /notes/
 
       .identity { gap: 10px; }
       .name { font-size: 21px; }
-      .navigation { margin-top: 0; }
-      .navigation a { padding: 0 10px; font-size: 14px; }
-      .navigation a:last-child { display: none; }
+      .menu-toggle { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 7px; width: 44px; height: 44px; border: 0; background: none; padding: 0; cursor: pointer; z-index: 12; }
+      .menu-toggle span { width: 22px; height: 2px; background: #000; transition: transform .2s, opacity .2s; }
+      .menu-toggle[aria-expanded="true"] { position: fixed; top: 24px; right: 20px; }
+      .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+      .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+      .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+      body.menu-open { overflow: hidden; }
+      .navigation { display: none; position: fixed; z-index: 10; inset: 0; margin: 0; padding: 90px 20px 30px; background: rgba(243,243,243,.97); flex-direction: column; align-items: center; justify-content: flex-start; gap: 10px; overflow-y: auto; }
+      .navigation.open { display: flex; }
+      .navigation a { font-size: 22px; line-height: 28px; padding: 12px 24px; }
+      .navigation a + a { border: 0; }
       .footer {
         margin: 0;
         padding: 24px max(20px, calc((100% - 350px)/2)) 30px;
@@ -330,7 +341,7 @@ permalink: /notes/
       }
 
       .hero {
-        padding: 65px 0 70px;
+        padding: 28px 0 50px;
       }
 
       .eyebrow {
@@ -348,15 +359,19 @@ permalink: /notes/
       }
 
       .section-heading {
-        align-items: center;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 6px 16px;
       }
+
+      .projects { margin-bottom: 60px; }
 
       .section-heading h2 {
         font-size: 23px;
       }
 
       .project {
-        grid-template-columns: 35px 1fr;
+        grid-template-columns: 35px minmax(0, 1fr);
         gap: 12px;
         padding: 28px 0;
       }
@@ -364,6 +379,8 @@ permalink: /notes/
       .project:hover {
         padding-left: 0;
       }
+
+      .project-main, .tag { min-width: 0; overflow-wrap: anywhere; }
 
       .project-main h3 {
         font-size: 23px;
@@ -373,10 +390,13 @@ permalink: /notes/
         font-size: 14px;
       }
 
-      .pagination { margin-top: 28px; }
+      .pagination { margin-top: 28px; flex-wrap: wrap; }
+      .pagination button { min-width: 44px; min-height: 44px; }
 
       .project-meta {
         grid-column: 2;
+        flex-wrap: wrap;
+        gap: 8px 16px;
         flex-direction: row;
         align-items: center;
       }
@@ -386,6 +406,11 @@ permalink: /notes/
       .copyright { padding-top: 0; }
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+
   </style>
 </head>
 
@@ -393,10 +418,11 @@ permalink: /notes/
 
 <header class="header">
   <a class="identity" href="{{ '/' | relative_url }}" aria-label="Pimi Pan — Homepage"><span class="dot" aria-hidden="true"></span><span class="name">Pimi Pan</span></a>
-  <nav class="navigation" aria-label="Main navigation">
+  <button class="menu-toggle" type="button" aria-label="Open navigation" aria-controls="navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+  <nav class="navigation" id="navigation" aria-label="Main navigation">
     <a href="{{ '/resume/' | relative_url }}">Resume</a>
     <a href="{{ '/projects/' | relative_url }}">Projects</a>
-    <a href="{{ '/notes/' | relative_url }}" class="active">Notes</a>
+    <a href="{{ '/notes/' | relative_url }}" class="active" aria-current="page">Notes</a>
   </nav>
 </header>
 
@@ -512,6 +538,35 @@ permalink: /notes/
     pagination.hidden = false;
     showPage(0);
   })();
+</script>
+
+<script>
+    const toggle = document.querySelector('.menu-toggle');
+    const navigation = document.querySelector('.navigation');
+    const mobileQuery = window.matchMedia('(max-width: 700px)');
+    function setMenu(open) {
+      navigation.classList.toggle('open', open);
+      document.body.classList.toggle('menu-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+      document.querySelector('main').inert = open;
+      document.querySelector('footer').inert = open;
+      document.querySelector('.identity').inert = open;
+      if (open) navigation.querySelector('a').focus();
+    }
+    toggle.addEventListener('click', () => setMenu(!navigation.classList.contains('open')));
+    navigation.addEventListener('click', event => { if (event.target.closest('a')) setMenu(false); });
+    document.addEventListener('keydown', event => {
+      if (!navigation.classList.contains('open')) return;
+      if (event.key === 'Escape') { setMenu(false); toggle.focus(); }
+      if (event.key === 'Tab') {
+        const controls = [toggle, ...navigation.querySelectorAll('a')];
+        const index = controls.indexOf(document.activeElement);
+        if (event.shiftKey && index <= 0) { event.preventDefault(); controls.at(-1).focus(); }
+        else if (!event.shiftKey && index === controls.length - 1) { event.preventDefault(); toggle.focus(); }
+      }
+    });
+    mobileQuery.addEventListener('change', () => setMenu(false));
 </script>
 
 </body>
