@@ -79,6 +79,12 @@ jobs:
           ssh -o BatchMode=yes "$target" "mkdir -p /var/www/pimipan/releases/$release"
           rsync -rlz --chmod=D755,F644 -e 'ssh -o BatchMode=yes' _site/ "$target:/var/www/pimipan/releases/$release/"
           ssh -o BatchMode=yes "$target" "/usr/local/bin/pimipan-activate $release"
+      - name: Verify public HTTP endpoint
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+        run: |
+          curl --fail --silent --show-error --retry 3 --connect-timeout 15 \
+            --max-time 30 -H 'Host: pimipan.work' "http://${VPS_HOST}/" -o /dev/null
       - name: Remove deployment key
         if: always()
         run: rm -f ~/.ssh/id_ed25519
