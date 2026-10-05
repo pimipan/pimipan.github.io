@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="潘敏的个人简历：十年以上设施设备与公用工程管理经验，涵盖工作经历、项目实践、教育背景与专业资质。">
+  <title>{{ page.title | escape }}</title>
+  <style>
+    @font-face { font-family: Work Sans; src: url('/assets/homepage2/work-sans.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+    @font-face { font-family: Avenir; src: url('/assets/homepage2/avenir-light.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+    :root { color-scheme: light; --paper: #f3f3f3; --yellow: #eea302; --red: #ff3b25; --blue: #80d8da; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: #000; font: 16px/1.6 Avenir, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif; }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, button:focus-visible { outline: 2px solid #000; outline-offset: 6px; }
+    .skip { position: fixed; top: -80px; left: 16px; z-index: 5; padding: 8px 16px; background: white; }
+    .skip:focus { top: 8px; }
+    .header { height: 79px; padding: 24px 40px 0 42px; display: flex; justify-content: space-between; align-items: flex-start; }
+    .identity { display: flex; align-items: center; gap: 12px; line-height: 26px; }
+    .dot { width: 25px; height: 25px; border-radius: 50%; background: var(--yellow); flex: none; }
+    .name { font: 600 22px/26px Work Sans, Arial, sans-serif; }
+    .role { margin-left: -2px; }
+    .navigation { display: flex; margin-top: 2px; line-height: 24px; }
+    .navigation a { padding: 0 15px; transition: color .2s; }
+    .navigation a + a { border-left: 1px solid #000; }
+    .navigation a:hover { color: #926300; }
+    .menu-toggle { display: none; }
+    .footer { margin: 10px 40px 0; padding: 40px 10px 78px; border-top: 1px solid #ccc; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+    .footer > div:nth-child(2) { text-align: center; }
+    .footer h2 { font: 600 18px/21px Work Sans, Arial, sans-serif; margin: 0 0 7px; }
+    .footer p { margin: 0; line-height: 22.4px; }
+    .footer a:hover { text-decoration: underline; }
+    .copyright { text-align: right; padding-top: 5px; font-size: 13px; line-height: 18.2px !important; }
+    .copyright a { text-decoration: underline; }
+    @media (max-width: 700px) {
+      .header { height: 90px; padding: 24px 20px 0; align-items: center; padding-bottom: 22px; position: relative; }
+      .identity { gap: 10px; } .name { font-size: 21px; } .dot { width: 25px; height: 25px; }
+      .menu-toggle { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 7px; width: 44px; height: 44px; border: 0; background: none; padding: 0; cursor: pointer; z-index: 12; }
+      .menu-toggle span { width: 22px; height: 2px; background: #000; transition: transform .2s, opacity .2s; }
+      .menu-toggle[aria-expanded="true"] { position: fixed; top: 24px; right: 20px; }
+      .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+      .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+      .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+      body.menu-open { overflow: hidden; }
+      .navigation { display: none; position: fixed; z-index: 10; inset: 0; margin: 0; padding: 90px 20px 30px; background: rgba(243,243,243,.97); flex-direction: column; align-items: center; justify-content: flex-start; gap: 10px; overflow-y: auto; }
+      .navigation.open { display: flex; }
+      .navigation a { font-size: 22px; line-height: 28px; padding: 12px 24px; }
+      .navigation a + a { border: 0; }
+      .footer { margin: 0; padding: 24px max(20px, calc((100% - 350px)/2)) 30px; grid-template-columns: 1fr; gap: 26px; }
+      .footer h2 { font-size: 17px; line-height: 20px; margin-bottom: 4px; }
+      .footer > div:nth-child(2), .copyright { text-align: left; }
+      .copyright { padding-top: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+    .verbatim-bullet { padding-left: 16px; text-indent: -16px; }
+    /* PDF-inspired single-column resume, with the website template palette. */
+    .navigation [aria-current="page"] { color: #8a6100; }
+    .resume-page { width: min(1180px, calc(100% - 80px)); margin: 0 auto; padding: 64px 0 80px; font-family: "PingFang SC", "Microsoft YaHei", Arial, sans-serif; }
+    .profile-header { display: flex; gap: 30px; align-items: center; margin-bottom: 42px; position: relative; }
+    .portrait { width: 112px; height: 112px; border-radius: 50%; object-fit: cover; flex: none; }
+    .profile-copy { min-width: 0; }
+    .profile-line { display: flex; align-items: baseline; flex-wrap: wrap; gap: 12px 20px; }
+    .profile-line h1 { font-size: clamp(52px, 6vw, 82px); line-height: 1.02; margin: 0; font-weight: 600; }
+    .personal { color: #666; font-size: 13px; margin: 0; line-height: 1.9; }
+    .contact-list { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 5px 16px; align-items: baseline; margin: 12px 0 0; font-size: 14px; }
+    .contact-list dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+    .contact-label { color: #666; font-size: 12px; white-space: nowrap; }
+    .contact-list a:hover { text-decoration: underline; }
+    .print { display: block; margin: 0 0 22px auto; padding: 8px 15px; border: 1px solid #aaa; border-radius: 24px; background: transparent; font: inherit; font-size: 12px; cursor: pointer; }
+    .print:hover { background: var(--yellow); border-color: #593e03; }
+    .resume-section { padding: 30px 0; border-top: 1px solid #d3d3d3; }
+    .resume-section:first-of-type { border-top: 0; padding-top: 0; }
+    .section-heading { margin-bottom: 22px; }
+    .section-heading h2 { font-size: 28px; line-height: 1.5; margin: 0; font-weight: 600; }
+    .section-heading span { display: none; }
+    .summary, .entry-body, .skills-content { font-size: 15px; line-height: 1.95; color: #444; }
+    .summary p { margin: 0 0 6px; }
+    .entry { margin-bottom: 32px; }
+    .entry:last-child { margin-bottom: 0; }
+    .entry-heading { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 22px; margin-bottom: 5px; }
+    .entry-heading h3 { font-size: 29px; line-height: 1.6; font-weight: 600; margin: 0; color: #111; overflow-wrap: anywhere; }
+    .date { margin: 0; color: #777; font-size: 13px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .entry-body p { margin: 0 0 9px; }
+    .project-subheading { margin: 20px 0 7px; font-size: 18px; line-height: 1.5; font-weight: 600; color: #222; break-after: avoid; }
+    .project-subheading:first-child { margin-top: 10px; }
+    .entry-body .job-title { color: #222; font-size: 14px; margin-bottom: 10px; }
+    .entry-body .scope { color: #666; font-size: 13px; line-height: 1.8; }
+    .entry ul { padding-left: 18px; margin: 10px 0 0; }
+    .entry li { padding-left: 2px; margin-bottom: 4px; }
+    .entry li::marker { color: #888; }
+    .result { border-left: 3px solid var(--yellow); padding-left: 12px; margin-top: 15px !important; color: #222; }
+    .status { font-size: 12px; font-weight: 400; color: #777; margin-left: 16px; }
+    .certificate-list { display: flex; gap: 12px; flex-wrap: wrap; }
+    .certificate-list span { border-radius: 30px; background: #e9e9e9; padding: 5px 15px; color: #333; font-size: 13px; }
+    .skills-content p { margin: 0; }
+    @media (max-width: 700px) {
+      .resume-page { width: calc(100% - 40px); padding: 28px 0 50px; }
+      .profile-header { gap: 18px; align-items: flex-start; margin-bottom: 32px; }
+      .portrait { width: 74px; height: 74px; }
+      .profile-line { gap: 6px; }
+      .profile-line h1 { font-size: 49px; line-height: 1.05; width: 100%; }
+      .personal { font-size: 12px; }
+      .contact-list { font-size: 12px; gap: 7px 10px; margin-top: 10px; }
+      .contact-label { font-size: 11px; }
+      .print { margin-bottom: 26px; }
+      .resume-section { padding: 25px 0; }
+      .section-heading { margin-bottom: 17px; }
+      .section-heading h2 { font-size: 23px; }
+      .entry-heading h3 { font-size: 23px; }
+      .entry-heading { gap: 3px; flex-direction: column; margin-bottom: 8px; }
+      .entry { margin-bottom: 30px; }
+      .summary, .entry-body, .skills-content { font-size: 14px; line-height: 1.9; }
+      .project-subheading { font-size: 16px; margin-top: 18px; }
+      .entry li { margin-bottom: 8px; }
+      .status { display: inline-block; margin-left: 10px; }
+    }
+    @media screen and (max-width: 700px) {
+      .profile-copy { display: grid; grid-template-columns: max-content minmax(0, 1fr); column-gap: 10px; }
+      .profile-line, .personal, .contact-list { display: grid; grid-column: 1 / -1; grid-template-columns: subgrid; column-gap: 10px; }
+      .profile-line h1 { grid-column: 1 / -1; }
+    }
+    @media screen and (max-width: 400px) {
+      .profile-header { flex-direction: column; }
+      .profile-copy { width: 100%; }
+    }
+    @media print {
+      /* A zero page margin suppresses browser-supplied URL/date page headers and footers. */
+      @page { margin: 0; }
+      body { background: white; color: black; }
+      .header, .skip, .print, .footer { display: none !important; }
+      .resume-page { width: 100%; max-width: none; margin: 0; padding: 0; }
+      #pdf-content { margin: 18mm; }
+      .profile-line h1 { font-size: 27px; line-height: 1.4; }
+      .section-heading h2 { font-size: 20px; }
+      .entry-heading h3 { font-size: 15px; line-height: 1.7; }
+      .profile-header { margin-bottom: 24px; }
+      .portrait { width: 85px; height: 85px; }
+      .resume-section { padding: 20px 0; }
+      .summary, .entry-body, .skills-content { font-size: 10pt; line-height: 1.65; }
+      .project-subheading { font-size: 11pt; margin: 12pt 0 4pt; }
+      .project-subheading:first-child { margin-top: 6pt; }
+      .section-heading { margin-bottom: 15px; break-after: avoid; }
+      .entry-heading { break-after: avoid; }
+      .entry { margin-bottom: 22px; }
+      li { break-inside: avoid; }
+    }
+
+
+</style>
+</head>
+<body>
+  <a class="skip" href="#main">跳转到正文</a>
+  <header class="header">
+    <a class="identity" href="/" aria-label="Pimi Pan — Homepage"><span class="dot" aria-hidden="true"></span><span class="name">Pimi Pan</span></a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-controls="navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="navigation" id="navigation" aria-label="Main navigation"><a href="/resume/" aria-current="page">Resume</a><a href="/projects/">Projects</a><a href="/notes/">Notes</a></nav>
+  </header>
+<main class="resume-page" id="main">
+<button class="print" type="button" onclick="window.print()">打印 / 保存 PDF ↗</button>
+<div id="pdf-content">
+<div class="profile-header"><img class="portrait" src="{{ page.portrait | relative_url }}" alt="{{ page.portrait_alt | escape }}" width="112" height="112"><div class="profile-copy"><div class="profile-line"><h1>{{ page.full_name | escape }}</h1><p class="personal"><span>{{ page.personal_gender | escape }}</span> <span>{{ page.personal_year | escape }}</span> </p></div><dl class="contact-list"><dt class="contact-label">Tel</dt><dd><a href="tel:{{ page.phone | escape }}">{{ page.phone | escape }}</a></dd><dt class="contact-label">Email</dt><dd><a href="mailto:{{ page.email | escape }}">{{ page.email | escape }}</a></dd><dt class="contact-label">Website</dt><dd><a href="{{ page.website | escape }}">{{ page.website_label | escape }}</a></dd></dl></div></div>
+{{ content }}
+</div></main>
+  <footer class="footer">
+    <div><h2>Phone</h2><p><a href="tel:{{ page.phone | escape }}">{{ page.phone | escape }}</a></p></div>
+    <div><h2>Email</h2><p><a href="mailto:{{ page.email | escape }}">{{ page.email | escape }}</a></p></div>
+    <p class="copyright">© 2035 By Pimi Pan.<br>Powered and secured by <a href="https://github.com/">Github</a></p>
+  </footer>
+<script>
+    const toggle = document.querySelector('.menu-toggle');
+    const navigation = document.querySelector('.navigation');
+    const mobileQuery = window.matchMedia('(max-width: 700px)');
+    function setMenu(open) {
+      navigation.classList.toggle('open', open);
+      document.body.classList.toggle('menu-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+      document.querySelector('main').inert = open;
+      document.querySelector('footer').inert = open;
+      document.querySelector('.identity').inert = open;
+      if (open) navigation.querySelector('a').focus();
+    }
+    toggle.addEventListener('click', () => setMenu(!navigation.classList.contains('open')));
+    navigation.addEventListener('click', event => { if (event.target.closest('a')) setMenu(false); });
+    document.addEventListener('keydown', event => {
+      if (!navigation.classList.contains('open')) return;
+      if (event.key === 'Escape') { setMenu(false); toggle.focus(); }
+      if (event.key === 'Tab') {
+        const controls = [toggle, ...navigation.querySelectorAll('a')];
+        const index = controls.indexOf(document.activeElement);
+        if (event.shiftKey && index <= 0) { event.preventDefault(); controls.at(-1).focus(); }
+        else if (!event.shiftKey && index === controls.length - 1) { event.preventDefault(); toggle.focus(); }
+      }
+    });
+    mobileQuery.addEventListener('change', () => setMenu(false));
+</script>
+</body>
+</html>

@@ -1,3 +1,23 @@
+## 修改中文简历
+
+- `resume.md`：编辑简历内容。
+- `resume.html`：由 Markdown 生成的完整 HTML 文件，可直接用浏览器打开。
+- `_layouts/resume-template.html`：维护页面样式的模板。
+
+双击 `scripts/sync-resume.command` 启动自动同步，保持终端窗口开启。以后保存 `resume.md`，根目录的 `resume.html` 就会更新，刷新浏览器即可查看。此同步程序不启动预览服务器。
+
+也可以在项目目录执行一次更新：
+
+```sh
+bundle exec ruby scripts/sync-resume.rb
+```
+
+请保留 Markdown 中的 HTML 容器及 `{: ...}` 排版标记。不要直接修改生成的 `resume.html`，下次同步会覆盖它。
+
+网站部署仍由 Jekyll 将 `resume.md` 生成为 `/resume/`；根目录的 HTML 副本已排除在 Jekyll 构建之外，避免页面冲突。线上更新需要推送修改并完成部署。
+
+---
+
 # Beautiful Jekyll
 
 [![Gem Version](https://badge.fury.io/rb/beautiful-jekyll-theme.svg)](https://badge.fury.io/rb/beautiful-jekyll-theme)
