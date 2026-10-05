@@ -1,0 +1,10 @@
+[Unit]
+Description=Retry initial website certificate setup while waiting for DNS
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=15min
+RandomizedDelaySec=30
+
+[Install]
+WantedBy=timers.target

@@ -1,8 +1,11 @@
 ---
-layout: post
+layout: fm_post
 title: 智力残疾员工的管理方法
+subtitle: 通过任务拆解、防错设计与导师制建立更包容的设施团队
 comments: true
 author: Pimi
+category: 团队管理
+technical: true
 ---
 ## 背景
 中国通过财税政策刺激残疾人就业，企业安置残疾人可享受税收优惠。

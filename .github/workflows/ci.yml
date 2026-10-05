@@ -1,15 +1,75 @@
-name: Beautiful Jekyll CI
-on: [push, pull_request]
+name: Build and deploy website
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: website-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   build:
-    name: Build Jekyll
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v3
-      - name: Build the site in the jekyll/builder container
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler: '2.5.23'
+          bundler-cache: true
+      - name: Build production website
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build --config _config.yml,_config.vps.yml --destination _site
+      - name: Check deployment output
         run: |
-          export JEKYLL_VERSION=3.8
-          docker run \
-          -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-          -e PAGES_REPO_NWO=${{ github.repository }} \
-          jekyll/builder:$JEKYLL_VERSION /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
+          test -s _site/index.html
+          test -s _site/resume/index.html
+          test -s _site/404.html
+          grep -q 'https://pimipan.work' _site/sitemap.xml
+          test ! -e _site/Gemfile
+          test ! -e _site/deploy
+      - uses: actions/upload-artifact@v4
+        with:
+          name: website
+          path: _site/
+          retention-days: 7
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: website
+          path: _site
+      - name: Configure deployment SSH
+        env:
+          SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.VPS_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_ed25519
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/id_ed25519 ~/.ssh/known_hosts
+      - name: Upload and activate release
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          release="${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}-${GITHUB_SHA}"
+          target="${VPS_USER}@${VPS_HOST}"
+          ssh -o BatchMode=yes "$target" "mkdir -p /var/www/pimipan/releases/$release"
+          rsync -rlz --chmod=D755,F644 -e 'ssh -o BatchMode=yes' _site/ "$target:/var/www/pimipan/releases/$release/"
+          ssh -o BatchMode=yes "$target" "/usr/local/bin/pimipan-activate $release"
+      - name: Remove deployment key
+        if: always()
+        run: rm -f ~/.ssh/id_ed25519

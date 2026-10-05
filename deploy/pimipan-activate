@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+set -euo pipefail
+release="${1:-}"
+[[ "$release" =~ ^[0-9]+-[0-9]+-[a-f0-9]{40}$ ]] || { echo 'Invalid release ID' >&2; exit 1; }
+cd /var/www/pimipan
+exec 9>.deploy.lock
+flock 9
+test -s "releases/$release/index.html"
+test -s "releases/$release/resume/index.html"
+previous="$(readlink current || true)"
+ln -s "releases/$release" "current.$release"
+mv -Tf "current.$release" current
+if ! curl --fail --silent --max-time 10 -H 'Host: pimipan.work' http://127.0.0.1:8080/ > /dev/null; then
+  if [ -n "$previous" ]; then
+    ln -s "$previous" "rollback.$release"
+    mv -Tf "rollback.$release" current
+  else
+    rm current
+  fi
+  echo 'Health check failed; release was not retained as current.' >&2
+  exit 1
+fi
+# Keep the active release and four recently uploaded alternatives.
+python3 - "$release" <<'PY'
+from pathlib import Path
+import re, shutil, sys
+others = sorted((p for p in Path('releases').iterdir()
+    if p.is_dir() and not p.is_symlink() and p.name != sys.argv[1]
+    and re.fullmatch(r'[0-9]+-[0-9]+-[a-f0-9]{40}', p.name)),
+    key=lambda p: p.stat().st_mtime, reverse=True)
+for old in others[4:]:
+    shutil.rmtree(old)
+PY
+echo "Activated $release"

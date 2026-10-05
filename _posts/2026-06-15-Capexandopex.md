@@ -1,7 +1,11 @@
 ---
-layout: post
+layout: fm_post
 title: 设施管理中的OPEX与CAPEX
+subtitle: 用工程数据、资产寿命与财务规则支持设施支出决策
 date: 2026-06-15
+author: Pimi Pan
+category: 资产与财务
+technical: true
 ---
 
 

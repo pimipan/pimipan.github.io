@@ -1,7 +1,11 @@
 ---
-layout: post
+layout: fm_post
 title: 振动的分析和解决措施
+subtitle: 从频率、传播路径到工程化检测的振动问题框架
 date: 2026-05-01
+author: Pimi Pan
+category: 可靠性工程
+technical: true
 ---
 
 

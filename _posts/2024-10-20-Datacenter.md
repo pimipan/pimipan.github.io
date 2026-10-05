@@ -1,8 +1,11 @@
 ---
-layout: post
+layout: fm_post
 title: 数据中心建设经验
+subtitle: 从冗余等级、配电、制冷与气流组织理解关键设施设计
 comments: true
 author: Pimi
+category: 关键设施
+technical: true
 ---
 ## 分类
 相比国标中的文字描述，美标中N+X的描述方式更加精准，适合书面沟通。
@@ -16,7 +19,7 @@ author: Pimi
 | **适用场景** | 成本低，适合小型应用     | 中小型企业，适合一般应用 | 大型企业，适合关键应用 | 大型企业，适合高可用性需求  | 关键任务应用，容错要求高   | 一般任务应用，冗余要求中等 | 非关键任务应用，冗余要求低 |
 
 ## 性能
-![](https://img.soujianzhu.cn/pic/20181116180049_6471271301.jpg "性能要求")
+![数据中心性能要求](/assets/img/20241020-1.png)
 
 ## 配电系统
 **UPS系统包括：** UPS、电池、精密配电柜（列头柜）、工业连接器、PDU、STS静态转化开关（重要的单电源设备）；
@@ -41,5 +44,5 @@ author: Pimi
 
 
 ## PUE
-Uptime Institute是Tire等级标准的制定机构，根据它在[网站](https://journal.uptimeinstitute.com/large-data-centers-are-mostly-more-efficient-analysis-confirms/"")公布，装机量越大的数据机房PUE越接近1，呈下图：
-![](https://github.com/pimipan/pimipan.github.io/blob/master/assets/img/20241020-2.png?raw=true)
+Uptime Institute 是 Tier 等级标准的制定机构。根据其公开分析，装机量越大的数据中心，PUE 越趋近于 1，见下图：
+![数据中心规模与 PUE 关系](/assets/img/20241020-2.png)

@@ -1,6 +1,33 @@
 ---
-layout: home
-title: PimiPan's Blog
-subtitle: This is where I will show my experience about work&life
+layout: fm
+nav-key: insights
+language: zh-CN
+title: 技术分享
+description: 关于设施管理、暖通、可靠性、关键环境、资产决策与团队管理的实践文章。
 permalink: /blog/
 ---
+<section class="page-hero">
+  <div class="shell page-hero-grid">
+    <div><span class="eyebrow">TECHNICAL NOTES / 技术分享</span><h1>把现场经验，沉淀成判断方法</h1><p>围绕设施经理日常面对的资产、可靠性、关键环境、安全与团队问题，记录技术分析与管理思考。</p></div>
+    <div class="page-coordinates" aria-hidden="true"><span>SHEET / NOTE-INDEX</span><span>DISCIPLINE / FM</span><span>STATUS / ACTIVE</span></div>
+  </div>
+</section>
+
+<section class="blog-page shell">
+  {% assign technical_posts = site.posts | where: "technical", true %}
+  <div class="filter-note"><span>ALL DISCIPLINES / 全部主题</span><span>{{ technical_posts.size }} NOTES</span></div>
+  {% if technical_posts.size > 0 %}
+    <div class="article-card-grid">
+      {% for post in technical_posts %}
+        <a class="article-card" href="{{ post.url | relative_url }}">
+          <div class="article-card-head"><span>{{ post.category | default: '设施管理' }}</span><span>{{ post.date | date: '%Y.%m.%d' }}</span></div>
+          <h2>{{ post.title }}</h2>
+          <p>{{ post.subtitle | default: post.excerpt | strip_html | normalize_whitespace | truncate: 150 }}</p>
+          <div class="article-card-foot"><span>READ TECHNICAL NOTE</span><span aria-hidden="true">↗</span></div>
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="empty-state">技术文章整理中。</div>
+  {% endif %}
+</section>

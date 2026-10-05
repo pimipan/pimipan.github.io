@@ -1,8 +1,11 @@
 ---
-layout: post
+layout: fm_post
 title: 维修还是更换
 subtitle: 老旧冷水机组评估指南
 author: Pimi Pan
+category: 资产与生命周期
+technical: true
+math: true
 ---
 
 # 维修还是更换：老旧冷水机组评估指南

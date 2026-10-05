@@ -1,0 +1,26 @@
+# Overrides only for the VPS; GitHub Pages keeps its existing URL.
+url: "https://pimipan.work"
+baseurl: ""
+url-pretty: "pimipan.work"
+exclude:
+  - resume.html
+  - resume-en.html
+  - scripts/
+  - deploy/
+  - vendor/
+  - CHANGELOG.md
+  - CNAME
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - DESIGN.md
+  - screenshot.png
+  - docs/
+  - beautiful-jekyll-theme.gemspec
+  - staticman.yml
+  - wrangler.jsonc
+  - assets/homepage2/portrait-color-edit.txt
+  - assets/homepage2/portrait-edit.txt
+  - assets/img/fm-engineer/hero-building.png
+  - assets/img/fm-engineer/project-strip.png

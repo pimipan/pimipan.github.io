@@ -1,0 +1,8 @@
+[Unit]
+Description=Enable pimipan.work HTTPS once DNS is ready
+After=network-online.target nginx.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/pimipan-enable-https

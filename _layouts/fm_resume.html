@@ -1,0 +1,41 @@
+---
+layout: fm
+---
+<section class="page-hero resume-hero">
+  <div class="shell page-hero-grid">
+    <div>
+      <span class="eyebrow">{{ page.eyebrow }}</span>
+      <h1>{{ page.heading }}</h1>
+      <p>{{ page.intro }}</p>
+    </div>
+    <div class="page-coordinates" aria-hidden="true">
+      <span>SHEET / {{ page.sheet }}</span>
+      <span>DISCIPLINE / FM</span>
+      <span>REV / 2026.07</span>
+    </div>
+  </div>
+</section>
+
+<section class="resume-shell shell">
+  <aside class="resume-rail" aria-label="{{ page.rail-label }}">
+    <div class="rail-block">
+      <span>{{ page.target-label }}</span>
+      <strong>{{ page.target-role }}</strong>
+    </div>
+    {% for item in page.evidence %}
+      <div class="rail-metric">
+        <strong>{{ item.value }}</strong>
+        <span>{{ item.label }}</span>
+      </div>
+    {% endfor %}
+    <div class="rail-block">
+      <span>{{ page.systems-label }}</span>
+      <p>{{ page.systems }}</p>
+    </div>
+    <button class="print-button" type="button" data-print>{{ page.print-label }} <span aria-hidden="true">↗</span></button>
+  </aside>
+  <article class="resume-document prose">
+    {{ content }}
+  </article>
+</section>
+

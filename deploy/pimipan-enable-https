@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -euo pipefail
+exec 9>/run/pimipan-https.lock
+flock -n 9 || exit 0
+if test -f /etc/nginx/sites-enabled/pimipan-tls; then
+    exit 0
+fi
+# Avoid certificate requests until both domain records reach this server.
+python3 - <<'PY'
+import socket, sys
+for host in ('pimipan.work', 'www.pimipan.work'):
+    try:
+        addresses = {x[4][0] for x in socket.getaddrinfo(host, 80, type=socket.SOCK_STREAM)}
+    except socket.gaierror:
+        print('Waiting for DNS:', host); sys.exit(1)
+    if addresses != {'107.173.202.132'}:
+        print('Waiting for correct DNS:', host); sys.exit(1)
+PY
+certbot certonly --non-interactive --agree-tos --register-unsafely-without-email \
+    --webroot -w /var/www/acme --cert-name pimipan.work \
+    -d pimipan.work -d www.pimipan.work
+ln -s /etc/nginx/sites-available/pimipan-tls /etc/nginx/sites-enabled/pimipan-tls
+printf '%s\n' 'location / { return 301 https://pimipan.work$request_uri; }' > /etc/nginx/snippets/pimipan-http-mode.conf
+if nginx -t; then
+    systemctl reload nginx
+else
+    rm /etc/nginx/sites-enabled/pimipan-tls
+    printf '%s\n' 'include /etc/nginx/snippets/pimipan-static.conf;' > /etc/nginx/snippets/pimipan-http-mode.conf
+    exit 1
+fi
+systemctl disable --now pimipan-https.timer

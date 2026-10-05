@@ -10,7 +10,11 @@
 ############################
 
 # Name of website
-title: PimiPan's blog
+title: Pimi Pan · Facility Management
+description: 设施管理专业作品集，展示中英文履历、项目案例与暖通、机电、可靠性及资产管理实践。
+url: "https://pimipan.github.io"
+baseurl: ""
+default-share-img: "/assets/img/fm-engineer/hero-building.jpg"
 
 # Your name to show in the footer
 author: Pimi Pan
@@ -20,13 +24,11 @@ author: Pimi Pan
 ###############################################
 
 navbar-links:
-  About Me: "aboutme"
-  Resume: "aboutme"
-  简历: "resume"
-  分享案例: 
-    - Baidu: "https://www.baidu.com"
-    - Google: "https://www.google.com" 
-  Support from: "https://deanattali.com"
+  概览: ""
+  中文履历: "resume"
+  English CV: "aboutme"
+  项目案例: "projects"
+  技术分享: "blog"
 
 ################
 # --- Logo --- #
@@ -84,7 +86,7 @@ social-network-links:
 
 # If you want your website to generate an RSS feed, provide a description
 # The URL for the feed will be https://<your_website>/feed.xml
-rss-description: This website is a virtual proof that I'm awesome
+rss-description: Pimi Pan 关于设施管理、暖通、可靠性、资产与团队管理的技术分享。
 
 ###########################
 # --- General options --- #
@@ -92,7 +94,7 @@ rss-description: This website is a virtual proof that I'm awesome
 
 # Select which social network share links to show in posts
 share-links-active:
-  twitter: ture
+  twitter: false
   facebook: false
   linkedin: false
   vk: false
@@ -122,7 +124,7 @@ edit_page_button: true
 navbar-var-length: false
 
 # The keywords to associate with your website, for SEO purposes
-#keywords: "my,list,of,keywords"
+keywords: "设施管理,Facility Management,HVAC,MEP,设施经理,可靠性,上海"
 
 ######################################
 # --- Colours / background image --- #
@@ -254,7 +256,7 @@ date_format: "%B %-d, %Y"
 #################################################################################
 
 # Output options (more information on Jekyll's site)
-timezone: "America/Toronto"
+timezone: "Asia/Shanghai"
 markdown: kramdown
 highlighter: rouge
 permalink: /:year-:month-:day-:title/
@@ -270,7 +272,7 @@ defaults:
       path: ""
       type: "posts"
     values:
-      layout: "post"
+      layout: "fm_post"
       comments: true  # add comments to all blog posts
       social-share: true # add social media sharing buttons to all blog posts
   -
@@ -281,8 +283,11 @@ defaults:
 
 # Exclude these files from production site
 exclude:
+  - deploy/
   - resume.html
   - scripts/
+  - resume-en.html
+  - vendor/
   - CHANGELOG.md
   - CNAME
   - Gemfile
@@ -291,13 +296,13 @@ exclude:
   - README.md
   - screenshot.png
   - docs/
+  - assets/img/fm-engineer/hero-building.png
+  - assets/img/fm-engineer/project-strip.png
 
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
-  - jekyll-toc
 
 
 # Beautiful Jekyll / Dean Attali
 # 2fc73a3a967e97599c9763d05e564189
-
