@@ -18,6 +18,15 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
+      - name: Select CI Bundler without changing locked gems
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          lock = Path('Gemfile.lock')
+          text = lock.read_text()
+          text = text.split('BUNDLED WITH\n')[0] + 'BUNDLED WITH\n   2.5.23\n'
+          lock.write_text(text)
+          PY
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
