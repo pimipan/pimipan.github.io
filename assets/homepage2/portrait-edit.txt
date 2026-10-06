@@ -1,0 +1,4 @@
+Tool: built-in image_gen
+Output: pimi-pan-portrait.png
+
+Use case: identity-preserve. Edit target: the supplied actual portrait of Pimi Pan. Produce a square photographic asset for a 480px circular portrait on a minimalist #f3f3f3 resume website. Only crop and color grade the existing photo: preserve the exact person's facial identity, expression, proportions, glasses, hairstyle, pose and original suit and shirt, no beautification or invented details. Crop to head and upper torso, with entire hair and comfortable headroom, face centered horizontally, eyes around 37% of image height; shoulders in lower half, composition safe for circle clipping. Convert to neutral black and white, smooth medium-gray studio background, soft midtone contrast, retain detailed hair, suit fabric and natural skin texture, gently lift shadows. No sepia, no blue tint, no dramatic light, no text, no border, no circle mask. Professional and understated. Output square image.
