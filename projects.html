@@ -463,7 +463,9 @@ permalink: /projects/
             <div class="number">{{ project_count | prepend: '0' | slice: -2, 2 }}</div>
             <div class="project-main">
               <h3>{{ project.title }}</h3>
-              <p>{{ project.summary }}</p>
+              {% if project.summary and project.summary != empty %}
+                <p class="list-summary">{{ project.summary | escape }}</p>
+              {% endif %}
               {% if project.tags %}
                 <div class="tags">{% for tag in project.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</div>
               {% endif %}

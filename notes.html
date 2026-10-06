@@ -454,14 +454,16 @@ permalink: /notes/
 
       {% assign note_pages = site.pages | where_exp: "item", "item.path contains 'notes/'" | sort: "order" %}
       {% assign note_count = 0 %}
-      {% for project in note_pages %}
+      {% for note in note_pages %}
         {% if note.listed != false %}
           {% assign note_count = note_count | plus: 1 %}
           <a href="{{ note.url | relative_url }}" class="project" data-note>
             <div class="number">{{ note_count | prepend: '0' | slice: -2, 2 }}</div>
             <div class="project-main">
               <h3>{{ note.title }}</h3>
-              <p>{{ note.summary }}</p>
+              {% if note.summary and note.summary != empty %}
+                <p class="list-summary">{{ note.summary | escape }}</p>
+              {% endif %}
               {% if note.tags %}
                 <div class="tags">{% for tag in note.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</div>
               {% endif %}
