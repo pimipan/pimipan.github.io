@@ -18,7 +18,7 @@ tags:
 <html lang="zh-CN">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{{ page.title }} | Pimi Pan</title><style>
     * { box-sizing: border-box; }
-    body {
+    .detail-content {
       width: min(1180px, calc(100% - 80px));
       margin: 0 auto;
       padding: 64px 0 80px;
@@ -31,15 +31,21 @@ tags:
     h2 { font-size: 28px; line-height: 1.5; }
     h3 { font-size: 29px; line-height: 1.6; }
     @media (max-width: 700px) {
-      body { width: calc(100% - 40px); padding: 28px 0 50px; font-size: 14px; }
+      .detail-content { width: calc(100% - 40px); padding: 28px 0 50px; font-size: 14px; }
       h1 { font-size: 49px; }
       h2, h3 { font-size: 23px; }
     }
   </style>
+<link rel="stylesheet" href="{{ "/assets/css/content-shell.css" | relative_url }}">
 </head>
 <body>
-  <p><a href="{{ '/projects/' | relative_url }}">← 返回 Projects</a></p>
+{% include content-header.html section="projects" %}
+
+<main class="detail-content">
   <h1>{{ page.title }}</h1>
   <p>在这里添加项目详细内容。</p>
+</main>
+{% include content-footer.html %}
+{% include content-navigation.html %}
 </body>
 </html>

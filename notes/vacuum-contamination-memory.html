@@ -20,7 +20,7 @@ tags:
 :root{--ink:#172638;--muted:#64748b;--border:#dce5ef;--paper:#fff;--bg:#f4f7fb}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"Noto Sans SC","Microsoft YaHei","PingFang SC",system-ui,sans-serif;line-height:1.6}
 .app{max-width:1290px;margin:0 auto;padding:30px 22px 42px}
-.topline{font-size:12px;letter-spacing:.16em;font-weight:800;color:#3b6996;text-transform:uppercase}.heading{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;margin:8px 0 10px}.heading h1{font-size:clamp(26px,3.4vw,40px);line-height:1.25;letter-spacing:-.035em;margin:0}
+.heading{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;margin:8px 0 10px}.heading h1{font-size:clamp(26px,3.4vw,40px);line-height:1.25;letter-spacing:-.035em;margin:0}
 .controls{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:20px 0 14px}.chip,.action{appearance:none;border:1px solid #d6e0eb;background:#fff;cursor:pointer;border-radius:12px;color:#2b3c50;font:inherit;font-size:13px;font-weight:750;padding:9px 12px;transition:background .2s,border-color .2s,transform .2s;white-space:nowrap}.chip:hover,.action:hover{transform:translateY(-1px);border-color:#8197ad}.chip[aria-pressed="true"]{background:#172f4a;color:#fff;border-color:#172f4a}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:1px;background:var(--c)}.action{background:#e7f0fb;border-color:#d1e4fc;color:#204d7d}.action[aria-pressed="true"]{background:#204d7d;color:white}
 .diagram-card{border:1px solid var(--border);border-radius:20px;background:white;box-shadow:0 11px 32px rgba(22,43,68,.055);overflow:hidden}.diagram-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px;color:#53657a;padding:13px 18px 9px;border-bottom:1px solid #edf1f5}.diagram-top strong{color:#17324f}.diagram-scroll{overflow-x:auto}.diagram-scroll svg{width:100%;min-width:880px;display:block;height:auto;user-select:none}.svg-lane{cursor:pointer}.svg-lane:focus{outline:none}.svg-lane .stripe{fill:transparent;transition:fill .18s}.svg-lane:hover .stripe,.svg-lane:focus .stripe{fill:rgba(66,112,157,.065)}.path-group{transition:opacity .22s;pointer-events:none}.path-group.dim{opacity:.10}.svg-lane.dim{opacity:.40}.svg-lane .name{font-weight:850;font-size:20px}.svg-lane .subtitle{font-size:12.5px;fill:#69788a}.svg-lane .num{font-size:13px;font-weight:850;fill:#6c7c8d}.arrow{fill:none;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:round}.origin{stroke:white;stroke-width:3}.minimol{stroke:white;stroke-width:2}.flow-note{font-size:16px;fill:#596e80;font-weight:600}.wall-line{stroke:#304f69;stroke-width:6;stroke-linecap:round}
 @media(max-width:850px){.app{padding:20px 12px 28px}.diagram-card{border-radius:14px}.heading h1{font-size:29px}.chip{padding:8px 9px}.diagram-top{padding:11px 12px}}
@@ -29,7 +29,7 @@ tags:
 /* Notes template: typography, spacing and neutral surfaces. */
 
     * { box-sizing: border-box; }
-    body {
+    .detail-content {
       width: min(1180px, calc(100% - 80px));
       margin: 0 auto;
       padding: 64px 0 80px;
@@ -42,15 +42,14 @@ tags:
     h2 { font-size: 28px; line-height: 1.5; }
     h3 { font-size: 29px; line-height: 1.6; }
     @media (max-width: 700px) {
-      body { width: calc(100% - 40px); padding: 28px 0 50px; font-size: 14px; }
+      .detail-content { width: calc(100% - 40px); padding: 28px 0 50px; font-size: 14px; }
       h1 { font-size: 49px; }
       h2, h3 { font-size: 23px; }
     }
-  
 :root { --ink: #000; --muted: #555; --border: #ccc; --paper: #fff; --bg: #f3f3f3; }
 .app { max-width: none; margin: 0; padding: 0; min-width: 0; }
-.notes-back { margin: 0 0 40px; }
-.topline { color: #555; font-weight: 600; letter-spacing: .16em; }
+
+
 .heading { display: block; margin: 22px 0 32px; }
 .heading h1 { font-size: clamp(52px, 6vw, 82px); line-height: 1.1; font-weight: 600; letter-spacing: -.035em; margin: 0 0 24px; }
 .controls { margin: 30px 0 18px; gap: 8px; }
@@ -67,26 +66,25 @@ a:focus-visible, button:focus-visible, .svg-lane:focus-visible { outline: 2px so
   .diagram-card { border-radius: 0; }
 }
 @media (max-width: 700px) {
-  .notes-back { margin-bottom: 28px; }
   .heading h1 { font-size: 49px; }
   .controls { margin-top: 24px; }
 }
 </style>
+<link rel="stylesheet" href="{{ "/assets/css/content-shell.css" | relative_url }}">
 </head>
-<body><main class="app">
-<p class="notes-back"><a href="{{ '/notes/' | relative_url }}">← 返回 Notes</a></p>
-<div class="topline">VACUUM SCIENCE · VISUAL MEMORY</div>
+<body>
+{% include content-header.html section="notes" %}
+<main class="app detail-content">
 <div class="heading"><div><h1>真空系统的7种污染源</h1></div></div>
 <nav class="controls" aria-label="选择污染物来源">
  <button class="chip" data-select="all" aria-pressed="true">全览 · 7 种</button>
  <button class="chip" data-select="desorption" aria-pressed="false" style="--c:#e46b5a"><i class="dot"></i>1 解吸</button>
  <button class="chip" data-select="diffusion" aria-pressed="false" style="--c:#d69a34"><i class="dot"></i>2 扩散</button>
- <button class="chip" data-select="virtual" aria-pressed="false" style="--c:#ce5d99"><i class="dot"></i>5 虚漏</button>
+ <button class="chip" data-select="virtual" aria-pressed="false" style="--c:#ce5d99"><i class="dot"></i>3 虚漏</button>
  <button class="chip" data-select="permeation" aria-pressed="false" style="--c:#239a86"><i class="dot"></i>4 渗透</button>
- <button class="chip" data-select="real" aria-pressed="false" style="--c:#3983cc"><i class="dot"></i>6 真漏</button>
- <button class="chip" data-select="vaporization" aria-pressed="false" style="--c:#9566d8"><i class="dot"></i>3 蒸发</button>
+ <button class="chip" data-select="real" aria-pressed="false" style="--c:#3983cc"><i class="dot"></i>5 真漏</button>
+ <button class="chip" data-select="vaporization" aria-pressed="false" style="--c:#9566d8"><i class="dot"></i>6 蒸发</button>
  <button class="chip" data-select="backstream" aria-pressed="false" style="--c:#67768c"><i class="dot"></i>7 返流</button>
- 
 </nav>
 <section class="diagram-card" aria-label="真空污染物来源剖面图">
  <div class="diagram-top"><span><strong>● 实心圆＝起点</strong>　　箭头＝气体迁移方向　　浅灰线＝各机制独立示意</span><span>点击按钮或图中任意一行，可聚焦查看</span></div>
@@ -118,10 +116,10 @@ a:focus-visible, button:focus-visible, .svg-lane:focus-visible { outline: 2px so
  <!-- lanes: labels on the left -->
  <g class="svg-lane" data-id="desorption" tabindex="0" role="button" aria-label="聚焦解吸"><rect class="stripe" x="14" y="115" width="1170" height="81" rx="12"/><text class="num" x="32" y="145">01</text><text class="name" x="34" y="170" fill="#b34d40">解吸</text><text class="subtitle" x="34" y="188">DESORPTION</text></g>
  <g class="svg-lane" data-id="diffusion" tabindex="0" role="button" aria-label="聚焦扩散"><rect class="stripe" x="14" y="200" width="1170" height="81" rx="12"/><text class="num" x="32" y="230">02</text><text class="name" x="34" y="255" fill="#a67a24">扩散</text><text class="subtitle" x="34" y="273">DIFFUSION</text></g>
- <g class="svg-lane" data-id="virtual" transform="translate(0 -170)" tabindex="0" role="button" aria-label="聚焦虚漏"><rect class="stripe" x="14" y="455" width="1170" height="81" rx="12"/><text class="num" x="32" y="485">05</text><text class="name" x="34" y="510" fill="#a84478">虚漏</text><text class="subtitle" x="34" y="528">VIRTUAL LEAK</text></g>
+ <g class="svg-lane" data-id="virtual" transform="translate(0 -170)" tabindex="0" role="button" aria-label="聚焦虚漏"><rect class="stripe" x="14" y="455" width="1170" height="81" rx="12"/><text class="num" x="32" y="485">03</text><text class="name" x="34" y="510" fill="#a84478">虚漏</text><text class="subtitle" x="34" y="528">VIRTUAL LEAK</text></g>
  <g class="svg-lane" data-id="permeation" tabindex="0" role="button" aria-label="聚焦渗透"><rect class="stripe" x="14" y="370" width="1170" height="81" rx="12"/><text class="num" x="32" y="400">04</text><text class="name" x="34" y="425" fill="#1b7d6d">渗透</text><text class="subtitle" x="34" y="443">PERMEATION</text></g>
- <g class="svg-lane" data-id="real" transform="translate(0 -85)" tabindex="0" role="button" aria-label="聚焦真漏"><rect class="stripe" x="14" y="540" width="1170" height="81" rx="12"/><text class="num" x="32" y="570">06</text><text class="name" x="34" y="595" fill="#2e6ca7">真漏</text><text class="subtitle" x="34" y="613">REAL LEAK</text></g>
- <g class="svg-lane" data-id="vaporization" transform="translate(0 255)" tabindex="0" role="button" aria-label="聚焦蒸发"><rect class="stripe" x="14" y="285" width="1170" height="81" rx="12"/><text class="num" x="32" y="315">03</text><text class="name" x="34" y="340" fill="#7851ac">蒸发</text><text class="subtitle" x="34" y="358">VAPORIZATION</text></g>
+ <g class="svg-lane" data-id="real" transform="translate(0 -85)" tabindex="0" role="button" aria-label="聚焦真漏"><rect class="stripe" x="14" y="540" width="1170" height="81" rx="12"/><text class="num" x="32" y="570">05</text><text class="name" x="34" y="595" fill="#2e6ca7">真漏</text><text class="subtitle" x="34" y="613">REAL LEAK</text></g>
+ <g class="svg-lane" data-id="vaporization" transform="translate(0 255)" tabindex="0" role="button" aria-label="聚焦蒸发"><rect class="stripe" x="14" y="285" width="1170" height="81" rx="12"/><text class="num" x="32" y="315">06</text><text class="name" x="34" y="340" fill="#7851ac">蒸发</text><text class="subtitle" x="34" y="358">VAPORIZATION</text></g>
  <g class="svg-lane" data-id="backstream" tabindex="0" role="button" aria-label="聚焦返流"><rect class="stripe" x="14" y="625" width="1170" height="108" rx="12"/><text class="num" x="32" y="655">07</text><text class="name" x="34" y="680" fill="#58667b">返流</text><text class="subtitle" x="34" y="698">BACKSTREAMING</text></g>
  <!-- Color paths for seven mechanisms, display order 1·2·5·4·6·3·7 -->
  <g class="path-group" data-id="desorption">
@@ -206,4 +204,6 @@ a:focus-visible, button:focus-visible, .svg-lane:focus-visible { outline: 2px so
   select('all');
 })();
 </script>
+{% include content-footer.html %}
+{% include content-navigation.html %}
 </body></html>

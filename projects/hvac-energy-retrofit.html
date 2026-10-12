@@ -77,14 +77,11 @@ tags:
 .facts{border-top-color:var(--yellow)}.outcome{border-left:3px solid var(--yellow)}.navigation [aria-current="page"]{color:#8a6100}.header,.footer{color:#000}.header{border:0;font-size:16px}.footer{font-size:16px}.footer a,.identity,.navigation a{text-decoration:none}.section-head small,.date,.num,.plus,.arrow{color:#666}
 @media print{.header,.footer{display:none!important}}
 </style>
+<link rel="stylesheet" href="{{ "/assets/css/content-shell.css" | relative_url }}">
 </head>
 <body>
 <a class="skip" href="#main">跳转到正文</a>
-<header class="header">
-    <a class="identity" href="/" aria-label="Pimi Pan — Homepage"><span class="dot" aria-hidden="true"></span><span class="name">Pimi Pan</span></a>
-    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-controls="navigation" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav class="navigation" id="navigation" aria-label="Main navigation"><a href="/resume/">Resume</a><a href="/projects/" aria-current="page">Projects</a><a href="/notes/">Notes</a></nav>
-  </header>
+{% include content-header.html section="projects" %}
 <div class="wrap">
 <main id="main">
 <section class="hero" aria-labelledby="title">
@@ -107,38 +104,7 @@ tags:
 <section class="outcome" id="outcome" aria-labelledby="outcome-title"><div><h2 id="outcome-title">改造成效，<br>落实到投资回收。</h2><p>项目实施后持续跟踪能源使用情况，投资已在两年内收回，让系统改造的价值体现在实际运营中。</p><span class="status">已实现投资回收</span></div><div class="result"><span class="value">2</span><span class="unit">年内</span><span class="label">收回项目投资</span></div></section>
 </main>
 </div>
-<footer class="footer">
-    <div><h2>Phone</h2><p><a href="tel:17621199271">17621199271</a></p></div>
-    <div><h2>Email</h2><p><a href="mailto:pimipan@hotmail.com">pimipan@hotmail.com</a></p></div>
-    <p class="copyright">© 2035 By Pimi Pan.<br>Powered and secured by <a href="https://github.com/">Github</a></p>
-  </footer>
-<script>
-    const toggle = document.querySelector('.menu-toggle');
-    const navigation = document.querySelector('.navigation');
-    const mobileQuery = window.matchMedia('(max-width: 700px)');
-    function setMenu(open) {
-      navigation.classList.toggle('open', open);
-      document.body.classList.toggle('menu-open', open);
-      toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
-      document.querySelector('main').inert = open;
-      document.querySelector('footer').inert = open;
-      document.querySelector('.identity').inert = open;
-      if (open) navigation.querySelector('a').focus();
-    }
-    toggle.addEventListener('click', () => setMenu(!navigation.classList.contains('open')));
-    navigation.addEventListener('click', event => { if (event.target.closest('a')) setMenu(false); });
-    document.addEventListener('keydown', event => {
-      if (!navigation.classList.contains('open')) return;
-      if (event.key === 'Escape') { setMenu(false); toggle.focus(); }
-      if (event.key === 'Tab') {
-        const controls = [toggle, ...navigation.querySelectorAll('a')];
-        const index = controls.indexOf(document.activeElement);
-        if (event.shiftKey && index <= 0) { event.preventDefault(); controls.at(-1).focus(); }
-        else if (!event.shiftKey && index === controls.length - 1) { event.preventDefault(); toggle.focus(); }
-      }
-    });
-    mobileQuery.addEventListener('change', () => setMenu(false));
-</script>
+{% include content-footer.html %}
+{% include content-navigation.html %}
 </body>
 </html>

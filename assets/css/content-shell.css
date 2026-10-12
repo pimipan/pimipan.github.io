@@ -1,0 +1,52 @@
+/* Shared shell: sticky header, content-driven footer with a viewport minimum. */
+@font-face { font-family: Work Sans; src: url('../homepage2/work-sans.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+@font-face { font-family: Avenir; src: url('../homepage2/avenir-light.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+html { scroll-padding-top: 110px; }
+body { width: 100%; margin: 0; padding: 0; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; background: #f3f3f3; }
+body > .page, body > .wrap, body > main { flex: 1 0 auto; }
+body > .wrap { width: 100%; }
+body > .detail-content { width: min(1180px, calc(100% - 80px)); margin: 0 auto; padding: 64px 0 80px; color: #000; font: 15px/1.8 "PingFang SC", "Microsoft YaHei", Arial, sans-serif; }
+body > .header { position: sticky; top: 0; z-index: 20; flex: none; height: 79px; padding: 24px 40px 0 42px; display: flex; justify-content: space-between; align-items: flex-start; background: #f3f3f3; color: #000; font: 16px/1.6 Avenir, "PingFang SC", "Microsoft YaHei", Arial, sans-serif; }
+.header a, .footer a { color: inherit; text-decoration: none; }
+.header .identity { display: flex; align-items: center; gap: 12px; line-height: 26px; }
+.header .dot { display: block; width: 25px; height: 25px; margin: 0; border-radius: 50%; background: #eea302; flex: none; }
+.header .name { font: 600 22px/26px Work Sans, Arial, sans-serif; }
+.header .navigation { display: flex; margin-top: 2px; line-height: 24px; }
+.header .navigation a { padding: 0 15px; }
+.header .navigation a + a { border-left: 1px solid #000; }
+.header .navigation a:hover, .header .navigation [aria-current="page"] { color: #926300; }
+.header .menu-toggle { display: none; }
+.header a:focus-visible, .header button:focus-visible, .footer a:focus-visible { outline: 2px solid #000; outline-offset: 6px; }
+body > .footer { flex: none; margin: 10px 40px 0; padding: 40px 10px 78px; border-top: 1px solid #ccc; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; color: #000; background: #f3f3f3; font: 16px/1.6 Avenir, "PingFang SC", "Microsoft YaHei", Arial, sans-serif; }
+.footer > div:nth-child(2) { text-align: center; }
+.footer h2 { font: 600 18px/21px Work Sans, Arial, sans-serif; margin: 0 0 7px; }
+.footer p { margin: 0; line-height: 22.4px; overflow-wrap: anywhere; }
+.footer a:hover { text-decoration: underline; }
+.footer .copyright { text-align: right; padding-top: 5px; font-size: 13px; line-height: 18.2px; }
+.footer .copyright a { text-decoration: underline; }
+@media (max-width: 700px) {
+  body > .detail-content { width: calc(100% - 40px); padding: 28px 0 50px; font-size: 14px; }
+  body > .header { height: 90px; padding: 24px 20px 22px; align-items: center; }
+  .header .identity { gap: 10px; }
+  .header .name { font-size: 21px; }
+  .header .menu-toggle { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 7px; width: 44px; height: 44px; border: 0; background: none; padding: 0; cursor: pointer; z-index: 12; }
+  .header .menu-toggle span { width: 22px; height: 2px; background: #000; transition: transform .2s, opacity .2s; }
+  .header .menu-toggle[aria-expanded="true"] { position: fixed; top: 24px; right: 20px; }
+  .header .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+  .header .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .header .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+  body.menu-open { overflow: hidden; }
+  .header .navigation { display: none; position: fixed; z-index: 10; inset: 0; margin: 0; padding: 90px 20px 30px; background: #f3f3f3; flex-direction: column; align-items: center; gap: 10px; overflow-y: auto; }
+  .header .navigation.open { display: flex; }
+  .header .navigation a { font-size: 22px; line-height: 28px; padding: 12px 24px; }
+  .header .navigation a + a { border: 0; }
+  body > .footer { margin: 0; padding: 24px max(20px, calc((100% - 350px)/2)) 30px; grid-template-columns: 1fr; gap: 26px; }
+  .footer h2 { font-size: 17px; line-height: 20px; margin-bottom: 4px; }
+  .footer > div:nth-child(2), .footer .copyright { text-align: left; }
+  .footer .copyright { padding-top: 0; }
+}
+@media print {
+  body { display: block; min-height: 0; }
+  body > .header, body > .footer { display: none !important; }
+  body > .detail-content { width: 100%; padding: 0; }
+}

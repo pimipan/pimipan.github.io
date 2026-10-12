@@ -412,19 +412,12 @@ permalink: /notes/
     }
 
   </style>
+<link rel="stylesheet" href="{{ "/assets/css/content-shell.css" | relative_url }}">
 </head>
 
 <body>
 
-<header class="header">
-  <a class="identity" href="{{ '/' | relative_url }}" aria-label="Pimi Pan — Homepage"><span class="dot" aria-hidden="true"></span><span class="name">Pimi Pan</span></a>
-  <button class="menu-toggle" type="button" aria-label="Open navigation" aria-controls="navigation" aria-expanded="false"><span></span><span></span><span></span></button>
-  <nav class="navigation" id="navigation" aria-label="Main navigation">
-    <a href="{{ '/resume/' | relative_url }}">Resume</a>
-    <a href="{{ '/projects/' | relative_url }}">Projects</a>
-    <a href="{{ '/notes/' | relative_url }}" class="active" aria-current="page">Notes</a>
-  </nav>
-</header>
+{% include content-header.html section="notes" %}
 
 <div class="page">
 
@@ -482,11 +475,7 @@ permalink: /notes/
 
 </div>
 
-<footer class="footer">
-  <div><h2>Phone</h2><p><a href="tel:17621199271">17621199271</a></p></div>
-  <div><h2>Email</h2><p><a href="mailto:pimipan@hotmail.com">pimipan@hotmail.com</a></p></div>
-  <p class="copyright">© 2035 By Pimi Pan.<br>Powered and secured by <a href="https://github.com/">Github</a></p>
-</footer>
+{% include content-footer.html %}
 
 <script>
   (() => {
@@ -542,34 +531,7 @@ permalink: /notes/
   })();
 </script>
 
-<script>
-    const toggle = document.querySelector('.menu-toggle');
-    const navigation = document.querySelector('.navigation');
-    const mobileQuery = window.matchMedia('(max-width: 700px)');
-    function setMenu(open) {
-      navigation.classList.toggle('open', open);
-      document.body.classList.toggle('menu-open', open);
-      toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
-      document.querySelector('main').inert = open;
-      document.querySelector('footer').inert = open;
-      document.querySelector('.identity').inert = open;
-      if (open) navigation.querySelector('a').focus();
-    }
-    toggle.addEventListener('click', () => setMenu(!navigation.classList.contains('open')));
-    navigation.addEventListener('click', event => { if (event.target.closest('a')) setMenu(false); });
-    document.addEventListener('keydown', event => {
-      if (!navigation.classList.contains('open')) return;
-      if (event.key === 'Escape') { setMenu(false); toggle.focus(); }
-      if (event.key === 'Tab') {
-        const controls = [toggle, ...navigation.querySelectorAll('a')];
-        const index = controls.indexOf(document.activeElement);
-        if (event.shiftKey && index <= 0) { event.preventDefault(); controls.at(-1).focus(); }
-        else if (!event.shiftKey && index === controls.length - 1) { event.preventDefault(); toggle.focus(); }
-      }
-    });
-    mobileQuery.addEventListener('change', () => setMenu(false));
-</script>
+{% include content-navigation.html %}
 
 </body>
 </html>
