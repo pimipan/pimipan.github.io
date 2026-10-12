@@ -56,7 +56,7 @@ portrait_alt: 潘敏的个人照片
 
 <div class="entry-heading" markdown="1">
 
-### 赢创 ( 中国 ) 投资有限公司上海分公司
+### 赢创 ( 中国 ) 投资有限公司
 
 2021/08- 至今
 {: .date}

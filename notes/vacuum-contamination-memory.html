@@ -1,0 +1,209 @@
+---
+layout: null
+title: 真空系统的7种污染源
+summary: >-
+  利用AI为Anki制作可视化记忆图谱，帮助理解真空系统中气体污染的7种来源
+year: 2026
+order: 1
+tags:
+  - 真空系统
+  - 可视化
+  - AI
+---
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>真空系统的7种污染源</title>
+<style>
+:root{--ink:#172638;--muted:#64748b;--border:#dce5ef;--paper:#fff;--bg:#f4f7fb}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"Noto Sans SC","Microsoft YaHei","PingFang SC",system-ui,sans-serif;line-height:1.6}
+.app{max-width:1290px;margin:0 auto;padding:30px 22px 42px}
+.topline{font-size:12px;letter-spacing:.16em;font-weight:800;color:#3b6996;text-transform:uppercase}.heading{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;margin:8px 0 10px}.heading h1{font-size:clamp(26px,3.4vw,40px);line-height:1.25;letter-spacing:-.035em;margin:0}
+.controls{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:20px 0 14px}.chip,.action{appearance:none;border:1px solid #d6e0eb;background:#fff;cursor:pointer;border-radius:12px;color:#2b3c50;font:inherit;font-size:13px;font-weight:750;padding:9px 12px;transition:background .2s,border-color .2s,transform .2s;white-space:nowrap}.chip:hover,.action:hover{transform:translateY(-1px);border-color:#8197ad}.chip[aria-pressed="true"]{background:#172f4a;color:#fff;border-color:#172f4a}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:1px;background:var(--c)}.action{background:#e7f0fb;border-color:#d1e4fc;color:#204d7d}.action[aria-pressed="true"]{background:#204d7d;color:white}
+.diagram-card{border:1px solid var(--border);border-radius:20px;background:white;box-shadow:0 11px 32px rgba(22,43,68,.055);overflow:hidden}.diagram-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px;color:#53657a;padding:13px 18px 9px;border-bottom:1px solid #edf1f5}.diagram-top strong{color:#17324f}.diagram-scroll{overflow-x:auto}.diagram-scroll svg{width:100%;min-width:880px;display:block;height:auto;user-select:none}.svg-lane{cursor:pointer}.svg-lane:focus{outline:none}.svg-lane .stripe{fill:transparent;transition:fill .18s}.svg-lane:hover .stripe,.svg-lane:focus .stripe{fill:rgba(66,112,157,.065)}.path-group{transition:opacity .22s;pointer-events:none}.path-group.dim{opacity:.10}.svg-lane.dim{opacity:.40}.svg-lane .name{font-weight:850;font-size:20px}.svg-lane .subtitle{font-size:12.5px;fill:#69788a}.svg-lane .num{font-size:13px;font-weight:850;fill:#6c7c8d}.arrow{fill:none;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:round}.origin{stroke:white;stroke-width:3}.minimol{stroke:white;stroke-width:2}.flow-note{font-size:16px;fill:#596e80;font-weight:600}.wall-line{stroke:#304f69;stroke-width:6;stroke-linecap:round}
+@media(max-width:850px){.app{padding:20px 12px 28px}.diagram-card{border-radius:14px}.heading h1{font-size:29px}.chip{padding:8px 9px}.diagram-top{padding:11px 12px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* Notes template: typography, spacing and neutral surfaces. */
+
+    * { box-sizing: border-box; }
+    body {
+      width: min(1180px, calc(100% - 80px));
+      margin: 0 auto;
+      padding: 64px 0 80px;
+      background: #f3f3f3;
+      color: #000;
+      font: 15px/1.8 "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+    }
+    a { color: inherit; }
+    h1 { font-size: clamp(52px, 6vw, 82px); line-height: 1.1; font-weight: 600; overflow-wrap: anywhere; }
+    h2 { font-size: 28px; line-height: 1.5; }
+    h3 { font-size: 29px; line-height: 1.6; }
+    @media (max-width: 700px) {
+      body { width: calc(100% - 40px); padding: 28px 0 50px; font-size: 14px; }
+      h1 { font-size: 49px; }
+      h2, h3 { font-size: 23px; }
+    }
+  
+:root { --ink: #000; --muted: #555; --border: #ccc; --paper: #fff; --bg: #f3f3f3; }
+.app { max-width: none; margin: 0; padding: 0; min-width: 0; }
+.notes-back { margin: 0 0 40px; }
+.topline { color: #555; font-weight: 600; letter-spacing: .16em; }
+.heading { display: block; margin: 22px 0 32px; }
+.heading h1 { font-size: clamp(52px, 6vw, 82px); line-height: 1.1; font-weight: 600; letter-spacing: -.035em; margin: 0 0 24px; }
+.controls { margin: 30px 0 18px; gap: 8px; }
+.chip, .action { border-color: #ccc; border-radius: 0; background: transparent; color: #000; font-weight: 600; min-height: 44px; }
+.chip:hover, .action:hover { background: #e8e6e0; border-color: #888; transform: none; }
+.chip[aria-pressed="true"], .action[aria-pressed="true"] { background: #000; border-color: #000; color: #fff; }
+.action { background: #e8e6e0; }
+a:focus-visible, button:focus-visible, .svg-lane:focus-visible { outline: 2px solid #000; outline-offset: 3px; }
+.diagram-card { border-radius: 0; box-shadow: none; }
+.diagram-top { padding: 15px 18px; color: #555; border-bottom-color: #ccc; }
+.diagram-top strong { color: #000; }
+@media (max-width: 850px) {
+  .app { padding: 0; }
+  .diagram-card { border-radius: 0; }
+}
+@media (max-width: 700px) {
+  .notes-back { margin-bottom: 28px; }
+  .heading h1 { font-size: 49px; }
+  .controls { margin-top: 24px; }
+}
+</style>
+</head>
+<body><main class="app">
+<p class="notes-back"><a href="{{ '/notes/' | relative_url }}">← 返回 Notes</a></p>
+<div class="topline">VACUUM SCIENCE · VISUAL MEMORY</div>
+<div class="heading"><div><h1>真空系统的7种污染源</h1></div></div>
+<nav class="controls" aria-label="选择污染物来源">
+ <button class="chip" data-select="all" aria-pressed="true">全览 · 7 种</button>
+ <button class="chip" data-select="desorption" aria-pressed="false" style="--c:#e46b5a"><i class="dot"></i>1 解吸</button>
+ <button class="chip" data-select="diffusion" aria-pressed="false" style="--c:#d69a34"><i class="dot"></i>2 扩散</button>
+ <button class="chip" data-select="virtual" aria-pressed="false" style="--c:#ce5d99"><i class="dot"></i>5 虚漏</button>
+ <button class="chip" data-select="permeation" aria-pressed="false" style="--c:#239a86"><i class="dot"></i>4 渗透</button>
+ <button class="chip" data-select="real" aria-pressed="false" style="--c:#3983cc"><i class="dot"></i>6 真漏</button>
+ <button class="chip" data-select="vaporization" aria-pressed="false" style="--c:#9566d8"><i class="dot"></i>3 蒸发</button>
+ <button class="chip" data-select="backstream" aria-pressed="false" style="--c:#67768c"><i class="dot"></i>7 返流</button>
+ 
+</nav>
+<section class="diagram-card" aria-label="真空污染物来源剖面图">
+ <div class="diagram-top"><span><strong>● 实心圆＝起点</strong>　　箭头＝气体迁移方向　　浅灰线＝各机制独立示意</span><span>点击按钮或图中任意一行，可聚焦查看</span></div>
+ <div class="diagram-scroll"><svg id="schematic" viewBox="0 0 1200 758" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="外部大气在左，固体壁在中间由两条竖线围成，真空在右。七条路径依次表示解吸、扩散、虚漏、渗透、真漏、蒸发、返流。">
+ <defs>
+  <pattern id="hatch" width="15" height="15" patternUnits="userSpaceOnUse" patternTransform="rotate(38)"><line x1="0" y1="0" x2="0" y2="15" stroke="#cad6e4" stroke-width="3"/></pattern>
+  <marker id="a1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L8 4L0 8Z" fill="#e46b5a"/></marker>
+  <marker id="a2" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L8 4L0 8Z" fill="#d69a34"/></marker>
+  <marker id="a3" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L8 4L0 8Z" fill="#9566d8"/></marker>
+  <marker id="a4" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L8 4L0 8Z" fill="#239a86"/></marker>
+  <marker id="a5" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L8 4L0 8Z" fill="#ce5d99"/></marker>
+  <marker id="a6" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L8 4L0 8Z" fill="#3983cc"/></marker>
+  <marker id="a7" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L8 4L0 8Z" fill="#67768c"/></marker>
+ </defs>
+ <rect x="0" y="0" width="1200" height="758" fill="#fff"/>
+ <!-- fixed field backgrounds -->
+ <rect x="228" y="98" width="191" height="638" fill="#eef6fd"/>
+ <rect x="423" y="98" width="119" height="638" fill="#f0f4f8"/>
+ <rect x="423" y="98" width="119" height="638" fill="url(#hatch)" opacity=".8"/>
+ <rect x="548" y="98" width="607" height="638" fill="#fbfcff"/>
+ <text x="322" y="54" font-size="21" font-weight="850" text-anchor="middle" fill="#41698d">外部大气</text>
+ <text x="322" y="76" font-size="13" text-anchor="middle" fill="#6e89a1">ATMOSPHERE</text>
+ <text x="482" y="54" font-size="21" font-weight="850" text-anchor="middle" fill="#2b4d67">固体壁</text>
+ <text x="482" y="76" font-size="13" text-anchor="middle" fill="#6e89a1">BULK</text>
+ <text x="852" y="54" font-size="21" font-weight="850" text-anchor="middle" fill="#41698d">真空腔体</text>
+ <text x="852" y="76" font-size="13" text-anchor="middle" fill="#6e89a1">VACUUM</text>
+ <path class="wall-line" d="M420 98V736 M545 98V736" fill="none"/>
+ <g stroke="#dfe7f0" stroke-dasharray="4 8" stroke-width="1.5"><path d="M20 200H1155 M20 285H1155 M20 370H1155 M20 455H1155 M20 540H1155 M20 625H1155"/></g>
+ <!-- lanes: labels on the left -->
+ <g class="svg-lane" data-id="desorption" tabindex="0" role="button" aria-label="聚焦解吸"><rect class="stripe" x="14" y="115" width="1170" height="81" rx="12"/><text class="num" x="32" y="145">01</text><text class="name" x="34" y="170" fill="#b34d40">解吸</text><text class="subtitle" x="34" y="188">DESORPTION</text></g>
+ <g class="svg-lane" data-id="diffusion" tabindex="0" role="button" aria-label="聚焦扩散"><rect class="stripe" x="14" y="200" width="1170" height="81" rx="12"/><text class="num" x="32" y="230">02</text><text class="name" x="34" y="255" fill="#a67a24">扩散</text><text class="subtitle" x="34" y="273">DIFFUSION</text></g>
+ <g class="svg-lane" data-id="virtual" transform="translate(0 -170)" tabindex="0" role="button" aria-label="聚焦虚漏"><rect class="stripe" x="14" y="455" width="1170" height="81" rx="12"/><text class="num" x="32" y="485">05</text><text class="name" x="34" y="510" fill="#a84478">虚漏</text><text class="subtitle" x="34" y="528">VIRTUAL LEAK</text></g>
+ <g class="svg-lane" data-id="permeation" tabindex="0" role="button" aria-label="聚焦渗透"><rect class="stripe" x="14" y="370" width="1170" height="81" rx="12"/><text class="num" x="32" y="400">04</text><text class="name" x="34" y="425" fill="#1b7d6d">渗透</text><text class="subtitle" x="34" y="443">PERMEATION</text></g>
+ <g class="svg-lane" data-id="real" transform="translate(0 -85)" tabindex="0" role="button" aria-label="聚焦真漏"><rect class="stripe" x="14" y="540" width="1170" height="81" rx="12"/><text class="num" x="32" y="570">06</text><text class="name" x="34" y="595" fill="#2e6ca7">真漏</text><text class="subtitle" x="34" y="613">REAL LEAK</text></g>
+ <g class="svg-lane" data-id="vaporization" transform="translate(0 255)" tabindex="0" role="button" aria-label="聚焦蒸发"><rect class="stripe" x="14" y="285" width="1170" height="81" rx="12"/><text class="num" x="32" y="315">03</text><text class="name" x="34" y="340" fill="#7851ac">蒸发</text><text class="subtitle" x="34" y="358">VAPORIZATION</text></g>
+ <g class="svg-lane" data-id="backstream" tabindex="0" role="button" aria-label="聚焦返流"><rect class="stripe" x="14" y="625" width="1170" height="108" rx="12"/><text class="num" x="32" y="655">07</text><text class="name" x="34" y="680" fill="#58667b">返流</text><text class="subtitle" x="34" y="698">BACKSTREAMING</text></g>
+ <!-- Color paths for seven mechanisms, display order 1·2·5·4·6·3·7 -->
+ <g class="path-group" data-id="desorption">
+  <circle cx="545" cy="158" r="10" fill="#e46b5a" class="origin"/>
+  <path d="M559 158 C613 158 640 151 717 158" stroke="#e46b5a" class="arrow" marker-end="url(#a1)"/>
+  <circle cx="604" cy="145" r="5" fill="#f0a397"/><circle cx="650" cy="169" r="4" fill="#f0a397"/>
+  <text x="767" y="163" class="flow-note">壁面吸附分子 → 真空</text>
+ </g>
+ <g class="path-group" data-id="diffusion">
+  <circle cx="466" cy="243" r="10" fill="#d69a34" class="origin"/>
+  <path d="M470 243 L489 231 L507 255 L527 237 L548 243 C601 247 644 243 716 243" stroke="#d69a34" class="arrow" marker-end="url(#a2)"/>
+  <circle cx="499" cy="220" r="3.5" fill="#d69a34"/><circle cx="518" cy="265" r="3.5" fill="#d69a34"/>
+  <text x="767" y="248" class="flow-note">壁体内部 → 表面 → 真空</text>
+ </g>
+ <g class="path-group" data-id="virtual" transform="translate(0 -170)">
+  <ellipse cx="487" cy="497" rx="27" ry="19" fill="#fff" stroke="#ce5d99" stroke-width="3" stroke-dasharray="5 4"/>
+  <circle cx="484" cy="498" r="9.5" fill="#ce5d99" class="origin"/><circle cx="497" cy="489" r="4" fill="#eaa1c8"/>
+  <path d="M513 497 L527 486 L544 497 Q572 480 593 497 T664 497 L719 497" stroke="#ce5d99" class="arrow" marker-end="url(#a5)"/>
+  <text x="767" y="493" class="flow-note">死角 / 缝隙藏气 → 缓慢释出</text>
+  <text x="767" y="512" font-size="12" fill="#a95f87">虚漏：没有直接贯穿外界的通道</text>
+ </g>
+ <g class="path-group" data-id="permeation">
+  <circle cx="303" cy="412" r="11" fill="#239a86" class="origin"/>
+  <path d="M317 412 H413 C440 412 454 399 480 412 S522 424 547 412 H717" stroke="#239a86" class="arrow" marker-end="url(#a4)"/>
+  <circle cx="421" cy="412" r="5.5" fill="#5ec0af"/><circle cx="468" cy="407" r="5.5" fill="#5ec0af"/><circle cx="526" cy="417" r="5.5" fill="#5ec0af"/>
+  <text x="767" y="417" class="flow-note">外界气体 → 穿过实体壁 → 真空</text>
+ </g>
+ <g class="path-group" data-id="real" transform="translate(0 -85)">
+  <!-- white open channel visibly interrupts the two solid wall lines -->
+  <rect x="411" y="570" width="143" height="24" fill="#fff"/>
+  <path d="M412 570 L449 574 L493 568 L539 570 L553 570 M412 594 L449 590 L493 596 L539 594 L553 594" stroke="#557188" stroke-width="3" fill="none" stroke-linejoin="round"/>
+  <circle cx="303" cy="582" r="11" fill="#3983cc" class="origin"/>
+  <path d="M317 582 H717" stroke="#3983cc" class="arrow" marker-end="url(#a6)"/>
+  <circle cx="350" cy="582" r="3" fill="#a0c6e8"/><circle cx="376" cy="582" r="3" fill="#a0c6e8"/>
+  <text x="767" y="587" class="flow-note">外界气体 → 贯穿孔道 → 真空</text>
+ </g>
+ <g class="path-group" data-id="vaporization" transform="translate(0 255)">
+  <rect x="574" y="320" width="39" height="18" rx="3" fill="#b99ce6" stroke="#9566d8" stroke-width="2"/>
+  <path d="M576 320 Q593 290 611 320Z" fill="#9566d8" opacity=".27"/>
+  <circle cx="594" cy="307" r="8" fill="#9566d8" class="origin"/>
+  <path d="M608 306 C634 292 660 293 674 306 S707 325 727 303" stroke="#9566d8" class="arrow" marker-end="url(#a3)"/>
+  <circle cx="644" cy="279" r="4" fill="#c2a7ec"/><circle cx="684" cy="293" r="4" fill="#c2a7ec"/>
+  <text x="767" y="330" class="flow-note">材料本身：固 / 液 → 气</text>
+  <text x="582" y="354" font-size="11" fill="#7851ac" font-weight="700">凝聚相</text>
+ </g>
+ <g class="path-group" data-id="backstream">
+  <rect x="638" y="695" width="75" height="37" rx="8" fill="#dae1ec" stroke="#667b92" stroke-width="3"/>
+  <path d="M649 706 H702 M649 714 H702 M649 722 H702" stroke="#8b9db0" stroke-width="3"/>
+  <text x="675" y="747" font-size="13" text-anchor="middle" font-weight="850" fill="#53657a">真空泵</text>
+  <circle cx="727" cy="708" r="10" fill="#67768c" class="origin"/>
+  <path d="M727 697 L727 644" stroke="#67768c" class="arrow" marker-end="url(#a7)"/>
+  <circle cx="713" cy="675" r="4" fill="#aab5c4"/><circle cx="741" cy="664" r="3.5" fill="#aab5c4"/>
+  <text x="767" y="674" class="flow-note">泵端气体 / 工作液蒸气 ↑ 逆流入腔</text>
+  <text x="767" y="698" font-size="12" fill="#8996a7">不是穿过壁体，而是沿抽气通道返回</text>
+ </g>
+ </svg></div>
+</section>
+</main>
+<script>
+(() => {
+  const chips = [...document.querySelectorAll('[data-select]')];
+  const lanes = [...document.querySelectorAll('.svg-lane')];
+  const paths = [...document.querySelectorAll('.path-group')];
+  function select(id) {
+    [...lanes, ...paths].forEach(element => {
+      element.classList.toggle('dim', id !== 'all' && element.dataset.id !== id);
+    });
+    chips.forEach(button => {
+      button.setAttribute('aria-pressed', String(button.dataset.select === id));
+    });
+  }
+  chips.forEach(button => button.addEventListener('click', () => select(button.dataset.select)));
+  lanes.forEach(lane => {
+    lane.addEventListener('click', () => select(lane.dataset.id));
+    lane.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        select(lane.dataset.id);
+      }
+    });
+  });
+  select('all');
+})();
+</script>
+</body></html>
