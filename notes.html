@@ -448,7 +448,8 @@ permalink: /notes/
       {% assign note_pages = site.pages | where_exp: "item", "item.path contains 'notes/'" | sort: "order" %}
       {% assign note_count = 0 %}
       {% for note in note_pages %}
-        {% if note.listed != false %}
+        {% assign source_extension = note.path | split: "." | last | downcase %}
+        {% if source_extension == "html" and note.listed != false %}
           {% assign note_count = note_count | plus: 1 %}
           <a href="{{ note.url | relative_url }}" class="project" data-note>
             <div class="number">{{ note_count | prepend: '0' | slice: -2, 2 }}</div>

@@ -450,7 +450,8 @@ permalink: /projects/
       {% assign project_pages = site.pages | where_exp: "item", "item.path contains 'projects/'" | sort: "order" %}
       {% assign project_count = 0 %}
       {% for project in project_pages %}
-        {% if project.listed != false %}
+        {% assign source_extension = project.path | split: "." | last | downcase %}
+        {% if source_extension == "html" and project.listed != false %}
           {% assign project_count = project_count | plus: 1 %}
           <a href="{{ project.url | relative_url }}" class="project" data-project>
             <div class="number">{{ project_count | prepend: '0' | slice: -2, 2 }}</div>
