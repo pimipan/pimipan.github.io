@@ -17,9 +17,9 @@
 .section-overview .project-copy p { margin: 0; }
 .section-stakeholders .project-copy > h3 { font-size: 16px; color: var(--project-muted); }
 .stakeholder-table { margin-top: 28px; }
-.stakeholder-table table { border-collapse: collapse; width: 100%; table-layout: fixed; background: var(--project-paper); font-size: 14px; line-height: 1.85; }
+.stakeholder-table table { border-collapse: collapse; width: 100%; table-layout: fixed; background: transparent; font-size: 14px; line-height: 1.85; }
 .stakeholder-table th, .stakeholder-table td { padding: 20px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--project-line); overflow-wrap: anywhere; }
-.stakeholder-table thead th { background: var(--project-evidence); font-weight: 600; }
+.stakeholder-table thead th { background: transparent; font-weight: 600; }
 .stakeholder-table th:first-child { width: 20%; }
 .stakeholder-table th:nth-child(2) { width: 28%; }
 .stakeholder-table th:nth-child(3) { width: 23%; }
@@ -68,7 +68,7 @@
   .stakeholder-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
   .stakeholder-table tr { display: block; padding: 22px 20px; border-bottom: 1px solid var(--project-line); }
   .stakeholder-table tbody th, .stakeholder-table tbody td { display: block; width: auto; padding: 0; border: 0; }
-  .stakeholder-table tbody th { font-size: 17px; margin-bottom: 16px; }
+  .stakeholder-table tbody th[scope="row"] { width: 100%; font-size: clamp(14px, 3.8vw, 17px); margin-bottom: 16px; white-space: nowrap; overflow-wrap: normal; overflow-x: auto; }
   .stakeholder-table td + td { margin-top: 14px; }
   .stakeholder-table td::before { content: attr(data-label); display: block; font-size: 12px; color: var(--project-muted); margin-bottom: 4px; }
   .project-process > li { grid-template-columns: 28px minmax(0, 1fr); gap: 8px 14px; padding: 22px 0; }
