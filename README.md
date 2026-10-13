@@ -1,3 +1,15 @@
+## 修改洁净室项目文章
+
+- `projects/洁净室建设项目经历分享.md`：正文源文件。
+- `projects/cleanroom-laboratory.html`：生成的项目页面，不直接编辑。
+- `assets/css/cleanroom-project.css`：正文样式。
+
+修改 Markdown 后，在仓库目录运行 `python3 scripts/sync-cleanroom.py` 手动生成 HTML；运行 `bundle exec jekyll build` 更新本地预览，再刷新浏览器。不会自动同步或发布上线。
+
+正文目前按六个二级章节及现有表格结构生成。
+
+---
+
 ## 修改中文简历
 
 - `resume.md`：编辑简历内容。
