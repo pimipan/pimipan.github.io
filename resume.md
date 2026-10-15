@@ -7,8 +7,8 @@ personal_gender: 男 ·
 personal_year: 1992年
 phone: "17621199271"
 email: pimipan@hotmail.com
-website: https://pimipan.github.io
-website_label: pimipan.github.io
+website: https://pimipan.work
+website_label: pimipan.work
 portrait: /assets/img/resume-portrait.jpg
 portrait_alt: 潘敏的个人照片
 ---
