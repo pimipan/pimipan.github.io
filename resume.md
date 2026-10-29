@@ -5,10 +5,10 @@ permalink: /resume/
 full_name: 潘敏
 personal_gender: 男 ·
 personal_year: 1992年
-phone: "17621199271"
-email: pimipan@hotmail.com
-website: https://pimipan.work
-website_label: pimipan.work
+电话: "17621199271"
+邮箱: pimipan@hotmail.com
+作品集: https://pimipan.work
+作品集_label: pimipan.work
 portrait: /assets/img/resume-portrait.jpg
 portrait_alt: 潘敏的个人照片
 ---
