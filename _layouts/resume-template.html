@@ -159,12 +159,12 @@
 <main class="resume-page" id="main">
 <button class="print" type="button" onclick="window.print()">打印 / 保存 PDF ↗</button>
 <div id="pdf-content">
-<div class="profile-header"><img class="portrait" src="{{ page.portrait | relative_url }}" alt="{{ page.portrait_alt | escape }}" width="112" height="112"><div class="profile-copy"><div class="profile-line"><h1>{{ page.full_name | escape }}</h1><p class="personal"><span>{{ page.personal_gender | escape }}</span> <span>{{ page.personal_year | escape }}</span> </p></div><dl class="contact-list"><dt class="contact-label">Tel</dt><dd><a href="tel:{{ page.phone | escape }}">{{ page.phone | escape }}</a></dd><dt class="contact-label">Email</dt><dd><a href="mailto:{{ page.email | escape }}">{{ page.email | escape }}</a></dd><dt class="contact-label">Website</dt><dd><a href="{{ page.website | escape }}">{{ page.website_label | escape }}</a></dd></dl></div></div>
+<div class="profile-header"><img class="portrait" src="{{ page.portrait | relative_url }}" alt="{{ page.portrait_alt | escape }}" width="112" height="112"><div class="profile-copy"><div class="profile-line"><h1>{{ page.full_name | escape }}</h1><p class="personal"><span>{{ page.personal_gender | escape }}</span> <span>{{ page.personal_year | escape }}</span> </p></div><dl class="contact-list"><dt class="contact-label">Tel</dt><dd><a href="tel:{{ page["电话"] | default: page.phone | escape }}">{{ page["电话"] | default: page.phone | escape }}</a></dd><dt class="contact-label">Email</dt><dd><a href="mailto:{{ page["邮箱"] | default: page.email | escape }}">{{ page["邮箱"] | default: page.email | escape }}</a></dd><dt class="contact-label">作品集</dt><dd><a href="{{ page["作品集"] | default: page.website | escape }}">{{ page["作品集_label"] | default: page.website_label | escape }}</a></dd></dl></div></div>
 {{ content }}
 </div></main>
   <footer class="footer">
-    <div><h2>Phone</h2><p><a href="tel:{{ page.phone | escape }}">{{ page.phone | escape }}</a></p></div>
-    <div><h2>Email</h2><p><a href="mailto:{{ page.email | escape }}">{{ page.email | escape }}</a></p></div>
+    <div><h2>Phone</h2><p><a href="tel:{{ page["电话"] | default: page.phone | escape }}">{{ page["电话"] | default: page.phone | escape }}</a></p></div>
+    <div><h2>Email</h2><p><a href="mailto:{{ page["邮箱"] | default: page.email | escape }}">{{ page["邮箱"] | default: page.email | escape }}</a></p></div>
     <p class="copyright">© 2035 By Pimi Pan.<br>Powered and secured by <a href="https://github.com/">Github</a></p>
   </footer>
 <script>
